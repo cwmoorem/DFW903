@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleCorrespondenceAddressDelegate_Ext">
+  <column
+    desc="First line of mailing address."
+    name="CorrespondenceAddressLine1"
+    nullok="true"
+    type="addressline"/>
+  <column
+    desc="Second line of mailing address."
+    name="CorrespondenceAddressLine2"
+    nullok="true"
+    type="addressline"/>
+  <column
+    desc="Third line of mailing address."
+    name="CorrespondenceAddressLine3"
+    nullok="true"
+    type="addressline"/>
+  <column
+    desc="Additional description of mailing address."
+    name="CorrespondenceDescription"
+    nullok="true"
+    type="shorttext"/>
+  <column
+    name="CorrespondenceCity"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="60"/>
+  </column>
+  <column
+    name="CorrespondencePostalCode"
+    nullok="true"
+    type="postalcode"/>
+  <typekey
+    desc="Country."
+    name="CorrespondenceCountry"
+    nullok="true"
+    typelist="Country"/>
+</delegate>

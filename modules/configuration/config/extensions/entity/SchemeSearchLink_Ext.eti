@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc="Details about the scheme"
+  entity="SchemeSearchLink_Ext"
+  exportable="true"
+  table="schemesearchlink_ext"
+  type="retireable">
+
+  <foreignkey
+    fkentity="Scheme_Ext"
+    name="Scheme"
+    nullok="true"/>
+
+  <array
+    arrayentity="SchemeSearch_Ext"
+    name="SchemeSearches"/>
+
+</entity>

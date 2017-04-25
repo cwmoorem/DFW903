@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<gx-model type="entity.ScheduleIdentityDelegate_Ext" xmlns="http://guidewire.com/gx" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <includes>
+    <include
+      path="IdentityDecimal"
+      type="java.math.BigDecimal"
+      xmlType="xs:decimal"
+      propertyInclusionType="NORMAL"/>
+    <include
+      path="IdentityInteger"
+      type="java.lang.Integer"
+      xmlType="xs:int"
+      propertyInclusionType="NORMAL"/>
+    <include
+      path="IdentityString"
+      type="java.lang.String"
+      xmlType="xs:string"
+      propertyInclusionType="NORMAL"/>
+  </includes>
+</gx-model>

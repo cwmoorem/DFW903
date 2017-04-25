@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<gx-model type="entity.ScheduleItemReplaceDelegate_Ext" xmlns="http://guidewire.com/gx" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <includes>
+    <include
+      path="FixedId"
+      type="java.lang.Long"
+      xmlType="xs:long"
+      propertyInclusionType="NORMAL"/>
+    <include
+      path="Version"
+      type="java.lang.Long"
+      xmlType="xs:long"
+      propertyInclusionType="NORMAL"/>
+  </includes>
+</gx-model>

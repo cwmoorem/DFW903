@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleExternalPolicyDelegate_Ext">
+  <column
+    desc="External Policy Number"
+    name="ExternalPolicyNumber"
+    nullok="true"
+    type="shorttext"/>
+  <column
+    desc="External Variant"
+    name="ExternalVariant"
+    nullok="true"
+    type="shorttext"/>
+  <column
+    desc="Start Date"
+    name="ExternalPolicyStartDate"
+    nullok="true"
+    type="datetime"/>
+  <column
+    desc="End Date"
+    name="ExternalPolicyEndDate"
+    nullok="true"
+    type="datetime"/>
+  <column
+    desc="Premium"
+    name="ExternalPolicyPremium"
+    nullok="true"
+    type="money"/>
+  <column
+    desc="Commission Percentage"
+    name="ExternalPolicyCommPercent"
+    nullok="true"
+    type="percentage"/>
+  <column
+    desc="Commission Amount"
+    name="ExternalPolicyCommAmount"
+    nullok="true"
+    type="money"/>
+</delegate>

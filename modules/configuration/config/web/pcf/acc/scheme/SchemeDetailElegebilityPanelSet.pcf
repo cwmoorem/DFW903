@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <PanelSet
+    id="SchemeDetailElegebilityPanelSet">
+    <Require
+      name="pageProcess"
+      type="acc.pc.scheme.pageprocess.SchemeDetailPageProcess"/>
+    <PanelRef
+      available="pageProcess.scheme.isEditable()">
+      <Toolbar>
+        <IteratorButtons
+          addVisible="true"
+          id="AttributeschemeDetailAdd"
+          iterator="AttributeschemeDetailIterator"
+          removeVisible="true"/>
+        <ToolbarDivider/>
+        <CheckedValuesToolbarButton
+          checkedRowAction="pageProcess.cloneDetail(schemeWrapper)"
+          id="Attributeclonebutton"
+          iterator="AttributeschemeDetailIterator"
+          label="&quot;Clone&quot;"/>
+      </Toolbar>
+      <ListViewPanel
+        available="true"
+        editable="true">
+        <RowIterator
+          checkBoxVisible="true"
+          editable="true"
+          elementName="schemeWrapper"
+          id="AttributeschemeDetailIterator"
+          pageSize="0"
+          toCreateAndAdd="pageProcess.addDetail(SchemeSourceType_Ext.TC_ELIGIBILITY)"
+          toRemove="pageProcess.removeDetail(schemeWrapper)"
+          type="acc.pc.scheme.pageprocess.SchemeDetailPageProcess.SchemeDetailWrapper"
+          value="pageProcess.schemeDetailWrappers?.where(\ s -&gt; s.schemeDetail.SchemeSourceType == SchemeSourceType_Ext.TC_ELIGIBILITY)"
+          valueType="java.util.List&lt;acc.pc.scheme.pageprocess.SchemeDetailPageProcess.SchemeDetailWrapper&gt;">
+          <ToolbarFlag
+            name="selectedSchemeDetail"/>
+          <Row>
+            <TextCell
+              align="center"
+              bold="true"
+              fontColor="&quot;Red&quot;"
+              id="indicatorcell"
+              value="pageProcess.indicateClone(schemeWrapper)"/>
+            <RangeCell
+              editable="true"
+              id="schemeDetailParent"
+              label="&quot;Parent&quot;"
+              value="schemeWrapper.schemeDetail.ParentCode"
+              valueRange="pageProcess.tableWrappers*.EntityName"
+              valueType="java.lang.String">
+              <PostOnChange/>
+            </RangeCell>
+            <RangeCell
+              editable="true"
+              id="schemeDetailComparator"
+              label="&quot;Comparitor&quot;"
+              required="true"
+              value="schemeWrapper.schemeDetail.Comparator"
+              valueRange="pageProcess.parentColumns(schemeWrapper.schemeDetail.ParentCode)"
+              valueType="java.lang.String"/>
+            <TypeKeyCell
+              editable="true"
+              id="schemeDetailOperator"
+              label="&quot;Operator&quot;"
+              required="true"
+              value="schemeWrapper.schemeDetail.SchemeOperatorType"
+              valueType="typekey.SchemeOperatorType_Ext">
+              <PostOnChange/>
+            </TypeKeyCell>
+            <!-- <RangeCell
+              editable="true"
+              id="schemeDetailAction"
+              label="&quot;Action&quot;"
+              required="true"
+              value="schemeWrapper.schemeDetail.SchemeActionType"
+              valueRange="pageProcess.schemeActionTypes(schemeWrapper.schemeDetail.SchemeSourceType)">
+              <PostOnChange/>
+            </RangeCell> -->
+            <!-- <Cell
+              available="schemeWrapper.schemeDetail.SchemeActionType == SchemeActionTypeExt.TC_VALUE"
+              editable="true"
+              id="ceUpdateCell"
+              label="&quot;Force Value&quot;"
+              value="schemeWrapper.schemeDetail.ForceValue"/> -->
+            <TypeKeyCell
+              editable="true"
+              id="schemeDetailValueType"
+              label="&quot;Value Type&quot;"
+              value="schemeWrapper.schemeDetail.SchemeValueType"
+              valueType="typekey.SchemeValueType_Ext">
+              <PostOnChange/>
+            </TypeKeyCell>
+            <ModalCellRef
+              def="SchemeValueInputCell(schemeWrapper.schemeDetail)"
+              editable="true"
+              label="&quot;Value&quot;"
+              mode="schemeWrapper.schemeDetail.SchemeValueType.Code "/>
+            <!-- <ButtonCell
+              action="pcf.SchemeConditionDetailPopup.push(schemeWrapper.schemeDetail)"
+              available="CurrentLocation.InEditMode"
+              hideIfDisabled="false"
+              id="Condition"
+              label="&quot;Condition&quot;"
+              value="schemeWrapper.schemeDetail.SchemeCondition == null ? &quot;No Condition&quot; : schemeWrapper.schemeDetail.SchemeCondition.Name"/> -->
+          </Row>
+        </RowIterator>
+      </ListViewPanel>
+    </PanelRef>
+  </PanelSet>
+</PCF>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <ListViewPanel
+    id="Policy_Summary_ActivitiesLV">
+    <Require
+      name="policyPeriod"
+      type="PolicyPeriod"/>
+    <RowIterator
+      editable="false"
+      elementName="activity"
+      value="policyPeriod.Policy.AllOpenActivities"
+      valueType="gw.api.database.IQueryBeanResult&lt;entity.Activity&gt;">
+      <Row>
+        <DateCell
+          id="Due"
+          label="DisplayKey.get(&quot;Web.Workplan.Due&quot;)"
+          value="activity.TargetDate"/>
+        <TypeKeyCell
+          id="Priority"
+          label="DisplayKey.get(&quot;Web.Workplan.Priority&quot;)"
+          value="activity.Priority"
+          valueType="typekey.Priority"/>
+        <TextCell
+          action="ActivityForward.go(activity, policyPeriod)"
+          available="perm.Activity.view(activity)"
+          id="Subject"
+          label="DisplayKey.get(&quot;Web.Workplan.Subject&quot;)"
+          value="activity.Subject"/>
+        <TextCell
+          id="AssignedTo"
+          label="DisplayKey.get(&quot;Web.Workplan.AssignedTo&quot;)"
+          sortBy="activity.AssignedUser"
+          value="activity.AssignedTo"
+          valueType="java.lang.Object"/>
+      </Row>
+    </RowIterator>
+  </ListViewPanel>
+</PCF>

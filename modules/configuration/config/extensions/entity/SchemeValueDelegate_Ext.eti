@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<delegate xmlns="http://guidewire.com/datamodel" name="SchemeValueDelegate_Ext">
+
+  <column
+    name="StringValue"
+    type="varchar"
+    desc="String value of scheme detail param"
+    nullok="true">
+    <columnParam name="size" value="255"/>
+  </column>
+
+  <column
+    name="BooleanValue"
+    type="bit"
+    desc="Boolean value of scheme detail"
+    nullok="true"/>
+
+  <column
+    name="DateValue"
+    type="datetime"
+    desc="Date value of scheme detail"
+    nullok="true"/>
+
+  <column
+    name="IntegerValue"
+    type="integer"
+    desc="Integer value of scheme detail"
+    nullok="true"/>
+
+  <column
+    name="DecimalValue"
+    type="decimal"
+    desc="Decimal value of scheme detail"
+    nullok="true">
+    <columnParam name="scale" value="4"/>
+    <columnParam name="precision" value="20"/>
+  </column>
+
+  <column
+    name="LongValue"
+    type="longint"
+    desc="Long value of scheme detail"
+    nullok="true"/>
+
+  <column
+    name="MoneyValue"
+    type="money"
+    desc="Money value of scheme detail"
+    nullok="true"/>
+
+
+
+</delegate>

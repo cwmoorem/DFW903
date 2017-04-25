@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../../pcf.xsd">
+  <Page
+    alwaysInEditMode="true"
+    canEdit="true"
+    canVisit="true"
+    id="APATest_Ext"
+    startInEditMode="true"
+    title="&quot;APA Test&quot;">
+    <Variable
+      initialValue="new acc.pc.apa.pageprocess.APATestPageProcess_Ext()"
+      name="pageProcess"
+      type="acc.pc.apa.pageprocess.APATestPageProcess_Ext"/>
+    <Screen>
+      <Toolbar>
+        <ToolbarButton
+          action="new acc.pc.apa.APARunMacro_Ext(pageProcess.APAMacro, pageProcess.MacroParameters).run()"
+          id="executeButton"
+          label="&quot;Execute Macro&quot;"/>
+      </Toolbar>
+      <DetailViewPanel>
+        <InputColumn>
+          <RangeInput
+            editable="true"
+            id="macroInput"
+            label="&quot;Macro&quot;"
+            optionLabel="VALUE.Name"
+            value="pageProcess.APAMacro"
+            valueRange="pageProcess.extractAPAMacros()"
+            valueType="APAMacro_Ext">
+            <PostOnChange/>
+          </RangeInput>
+          <InputDivider/>
+          <DateInput
+            dateFormat="short"
+            editable="true"
+            id="transactionDateInput"
+            label="&quot;Transaction Effective Date&quot;"
+            value="pageProcess.MacroParameters.TransactionEffectiveDate"
+            visible="pageProcess.isVisible(typekey.APAMacroInput_Ext.TC_TRANSACTIONDATE)"/>
+          <TextInput
+            editable="true"
+            id="AccountNumberInput"
+            label="&quot;Account Number&quot;"
+            value="pageProcess.MacroParameters.AccountNumber"
+            visible="pageProcess.isVisible(typekey.APAMacroInput_Ext.TC_ACCOUNTNUMBER)"/>
+          <TextInput
+            editable="true"
+            id="PolicyNumberInput"
+            label="&quot;Policy Number&quot;"
+            value="pageProcess.MacroParameters.PolicyNumber"
+            visible="pageProcess.isVisible(typekey.APAMacroInput_Ext.TC_POLICYNUMBER)"/>
+          <RangeInput
+            editable="true"
+            id="ProductInput"
+            label="&quot;Product&quot;"
+            optionLabel="VALUE.Name"
+            value="pageProcess.MacroParameters.Product"
+            valueRange="pageProcess.productCodes()"
+            valueType="gw.api.productmodel.Product"
+            visible="pageProcess.isVisible(typekey.APAMacroInput_Ext.TC_PRODUCT)"/>
+          <TypeKeyInput
+            editable="true"
+            id="quotetypeInput"
+            label="&quot;Quote Type&quot;"
+            value="pageProcess.MacroParameters.QuoteType"
+            valueType="QuoteType"
+            visible="pageProcess.isVisible(typekey.APAMacroInput_Ext.TC_QUOTETYPE)"/>
+          <TypeKeyInput
+            editable="true"
+            id="cancellationsourceInput"
+            label="&quot;Cancellation Source&quot;"
+            value="pageProcess.MacroParameters.CancellationSource"
+            valueType="CancellationSource"
+            visible="pageProcess.isVisible(typekey.APAMacroInput_Ext.TC_CANCELLATIONSOURCE)"/>
+          <TypeKeyInput
+            editable="true"
+            id="cancellationreasoncodeInput"
+            label="&quot;Cancellation Reason Code&quot;"
+            value="pageProcess.MacroParameters.CancellationReasonCode"
+            valueType="ReasonCode"
+            visible="pageProcess.isVisible(typekey.APAMacroInput_Ext.TC_CANCELLATIONREASONCODE)"/>
+          <TypeKeyInput
+            editable="true"
+            id="cancellationcalculationmethodInput"
+            label="&quot;Cancellation Calculation Method&quot;"
+            value="pageProcess.MacroParameters.CalculationMethod"
+            valueType="CalculationMethod"
+            visible="pageProcess.isVisible(typekey.APAMacroInput_Ext.TC_CANCELLATIONCALCULATIONMETHOD)"/>
+          <TextInput
+            editable="true"
+            id="cancellationdescriptionInput"
+            label="&quot;Cancellation Description&quot;"
+            value="pageProcess.MacroParameters.CancellationDescription"
+            valueType="String"
+            visible="pageProcess.isVisible(typekey.APAMacroInput_Ext.TC_CANCELLATIONDESCRIPTION)"/>
+        </InputColumn>
+      </DetailViewPanel>
+      <PanelRef
+        visible="pageProcess.APAMacro != null">
+        <Toolbar>
+          <IteratorButtons
+            addVisible="true"
+            iterator="dataiterator"
+            removeVisible="true"/>
+        </Toolbar>
+        <ListViewPanel>
+          <RowIterator
+            editable="true"
+            elementName="dataelement"
+            id="dataiterator"
+            toCreateAndAdd="pageProcess.MacroParameters.createAndAddData()"
+            toRemove="pageProcess.MacroParameters.removeMacroData(dataelement)"
+            type="acc.pc.apa.APAMacroData_Ext"
+            value="pageProcess.MacroParameters.extractMacroData()"
+            valueType="acc.pc.apa.APAMacroData_Ext[]">
+            <Row>
+              <RangeCell
+                editable="true"
+                id="commandAction"
+                label="&quot;Command&quot;"
+                optionLabel="VALUE.EntityName"
+                required="true"
+                value="dataelement.BLCommand"
+                valueRange="BLEntity_Ext.BLCommands.toTypedArray()"
+                valueType="BLEntity_Ext"/>
+              <RangeCell
+                editable="true"
+                id="EntityAction"
+                label="&quot;Entity&quot;"
+                optionLabel="VALUE.EntityName"
+                required="true"
+                value="dataelement.BLEntity"
+                valueRange="BLEntity_Ext.BLEntities.toTypedArray()"
+                valueType="BLEntity_Ext"/>
+              <TextCell
+                editable="true"
+                id="attributecell"
+                label="&quot;Attribute&quot;"
+                value="dataelement.BLAttribute"/>
+              <TextCell
+                editable="true"
+                id="valuetecell"
+                label="&quot;Value&quot;"
+                value="dataelement.BLStringValue"/>
+            </Row>
+          </RowIterator>
+        </ListViewPanel>
+      </PanelRef>
+    </Screen>
+  </Page>
+</PCF>

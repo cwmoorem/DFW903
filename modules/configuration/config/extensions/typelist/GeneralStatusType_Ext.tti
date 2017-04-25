@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="GeneralStatusType"
+  name="GeneralStatusType_Ext">
+  <typecode
+    code="draft"
+    desc="Draft status"
+    name="Draft"/>
+  <typecode
+    code="test"
+    desc="Test status"
+    name="Test"/>
+  <typecode
+    code="approved"
+    desc="Approved status"
+    name="Approved"/>
+</typelist>

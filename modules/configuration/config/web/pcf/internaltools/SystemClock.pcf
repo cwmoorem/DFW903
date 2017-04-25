@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <Page
+    autosaveable="false"
+    canEdit="gw.api.tools.TestingClock.isEnabled()"
+    countsAsWork="false"
+    id="SystemClock"
+    startInEditMode="true"
+    title="DisplayKey.get(&quot;Web.SystemClock.Title&quot;)">
+    <LocationEntryPoint
+      signature="SystemClock()"/>
+    <Variable
+      initialValue="new gw.api.tools.TestingClock()"
+      name="clock"
+      type="gw.api.tools.TestingClock"/>
+    <Screen
+      id="SystemClockScreen">
+      <Toolbar>
+        <ToolbarButton
+          action="clock.DateTime = clock.DateTime.addMinutes( 1 )"
+          id="SystemClock_AddMinuteButton"
+          label="DisplayKey.get(&quot;Web.SystemClock.AddMinute&quot;)"/>
+        <ToolbarButton
+          action="clock.DateTime = gw.api.util.DateUtil.addHours(clock.DateTime, 1)"
+          id="SystemClock_AddHourButton"
+          label="DisplayKey.get(&quot;Web.SystemClock.AddHour&quot;)"/>
+        <ToolbarButton
+          action="clock.DateTime = clock.DateTime.addDays( 1 )"
+          id="SystemClock_AddDayButton"
+          label="DisplayKey.get(&quot;Web.SystemClock.AddDay&quot;)"/>
+        <ToolbarButton
+          action="clock.DateTime = clock.DateTime.addWeeks( 1 )"
+          id="SystemClock_AddWeekButton"
+          label="DisplayKey.get(&quot;Web.SystemClock.AddWeek&quot;)"/>
+        <ToolbarButton
+          action="clock.DateTime = clock.DateTime.addMonths( 1 )"
+          id="SystemClock_AddMonthButton"
+          label="DisplayKey.get(&quot;Web.SystemClock.AddMonth&quot;)"/>
+        <ToolbarButton
+          action="clock.DateTime = clock.DateTime.addYears( 1 )"
+          id="SystemClock_AddYearButton"
+          label="DisplayKey.get(&quot;Web.SystemClock.AddYear&quot;)"/>
+      </Toolbar>
+      <Verbatim
+        label="clock.DateTime.toString()"/>
+      <Verbatim
+        label="DisplayKey.get(&quot;Web.SystemClock.NotEnabled&quot;)"
+        visible="not gw.api.tools.TestingClock.isEnabled()"
+        warning="true"/>
+      <Verbatim
+        label="DisplayKey.get(&quot;Web.SystemClock.InCluster&quot;)"
+        visible="gw.api.tools.TestingClock.Enabled and gw.api.system.PLConfigParameters.ClusteringEnabled.getValue()"
+        warning="true"/>
+      <DetailViewPanel>
+        <InputColumn>
+          <DateInput
+            dateFormat="short"
+            editable="true"
+            id="Date"
+            label="DisplayKey.get(&quot;Web.SystemClock.Date&quot;)"
+            timeFormat="short"
+            value="clock.DateTime"/>
+          <ButtonInput
+            action="null"
+            id="ChangeDate"
+            value="DisplayKey.get(&quot;Web.SystemClock.ChangeDate&quot;)"/>
+        </InputColumn>
+      </DetailViewPanel>
+      <PanelRef
+        def="UnsupportedToolsDisclaimerDV()"/>
+    </Screen>
+  </Page>
+</PCF>

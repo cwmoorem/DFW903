@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  entity="APAMacroInput_Ext"
+  table="apamacroinput_ext"
+  type="retireable">
+  <column
+    desc="Indicator that the Input is required or not"
+    name="RequiredInput"
+    nullok="true"
+    type="bit"/>
+  <typekey
+    desc="Input for the Macro"
+    name="APAMacroInput"
+    nullok="false"
+    typelist="APAMacroInput_Ext"/>
+  <foreignkey
+    fkentity="APAMacro_Ext"
+    name="APAMacro"
+    nullok="false"/>
+</entity>

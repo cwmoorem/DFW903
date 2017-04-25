@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc="Scheme Master Record"
+  entity="Scheme_Ext"
+  exportable="true"
+  table="scheme_ext"
+  type="retireable">
+  <implementsInterface
+    iface="acc.pc.scheme.ISchemeAdapter"
+    impl="acc.pc.scheme.SchemeAdapter"/>
+  <implementsEntity
+    name="GeneralStatusDelegate_Ext"/>
+  <edgeForeignKey
+    desc="Identifies the new scheme if the existing one is superseded"
+    edgeTableName="ReplaceScheme_Ext"
+    fkentity="Scheme_Ext"
+    loadable="true"
+    name="SupersedingScheme"
+    nullok="true"/>
+  <column
+    desc="Code Reference to the scheme"
+    name="Code"
+    nullok="false"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="60"/>
+  </column>
+  <column
+    desc="Name of the scheme"
+    name="Name"
+    nullok="false"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="255"/>
+  </column>
+  <column
+    desc="The product code the scheme is based on"
+    name="ProductCode"
+    nullok="false"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="60"/>
+  </column>
+  <typekey
+    default="Manual"
+    desc="Method used to create the scheme"
+    name="CreateMethod"
+    nullok="false"
+    typelist="SchemeCreateMethod_Ext"/>
+  <column
+    desc="Identifies if the scheme is available for renewal"
+    name="RenewalAvailable"
+    nullok="true"
+    type="bit"/>
+  <column
+    desc="Date the Scheme takes effect"
+    name="StartDate"
+    nullok="false"
+    type="datetime"/>
+  <column
+    desc="Date the Scheme stops being in effect"
+    name="EndDate"
+    nullok="true"
+    type="datetime"/>
+  <column
+    desc="Date the Scheme was automatically imported"
+    name="AutoImportDate"
+    nullok="true"
+    type="datetime"/>
+  <column
+    desc="A Detailed description of the scheme"
+    name="Description"
+    nullok="true"
+    type="longtext"/>
+  <column
+    desc="Identifies if the scheme is private"
+    name="Private"
+    nullok="true"
+    type="bit"/>
+  <array
+    arrayentity="SchemeDetail_Ext"
+    desc="Detail information about the scheme"
+    name="Details"/>
+  <array
+    arrayentity="SchemeProducer_Ext"
+    desc="Detail information about the scheme producers"
+    name="Producers"/>
+  <array
+    arrayentity="SchemeAccount_Ext"
+    desc="Array Linking scheme to possibly many accounts"
+    name="SchemeAccounts"/>
+  <index
+    desc="Unique constraint on Code."
+    name="SchemeUIdx"
+    unique="true">
+    <indexcol
+      keyposition="1"
+      name="Code"/>
+    <indexcol
+      keyposition="2"
+      name="Retired"/>
+  </index>
+  <typekey
+    default="public"
+    name="SchemeType"
+    nullok="false"
+    typelist="SchemeType_Ext"/>
+</entity>

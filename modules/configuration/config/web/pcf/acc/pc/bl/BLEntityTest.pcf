@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../../pcf.xsd">
+  <Page
+    alwaysInEditMode="true"
+    autosaveable="false"
+    canEdit="true"
+    canVisit="true"
+    countsAsWork="false"
+    id="BLEntityTest"
+    startInEditMode="true"
+    title="&quot;Business Language Test&quot;">
+    <Variable
+      initialValue="new acc.pc.bl.BLEntityTestPageProcess_Ext()"
+      name="pageProcess"
+      type="acc.pc.bl.BLEntityTestPageProcess_Ext"/>
+    <Screen>
+      <Toolbar>
+        <ToolbarButton
+          action="pageProcess.evaluateExpression(); pageProcess.executeExpression()"
+          id="testbutton"
+          label="&quot;Test&quot;"/>
+        <ToolbarButton
+          action="pageProcess.reset()"
+          id="Resetbutton"
+          label="&quot;Reset&quot;"/>
+      </Toolbar>
+      <DetailViewPanel>
+        <InputColumn>
+          <Label
+            label="&quot;User Entry&quot;"/>
+          <RangeInput
+            editable="true"
+            id="commandNameInput"
+            label="&quot;Command&quot;"
+            optionLabel="VALUE.EntityName"
+            value="pageProcess.BLCommand"
+            valueRange="pageProcess.BLCommands.toTypedArray()"
+            valueType="BLEntity_Ext">
+            <PostOnChange
+              onChange="pageProcess.checkRequired()"/>
+          </RangeInput>
+          <RangeInput
+            editable="true"
+            id="entityNameInput"
+            label="&quot;Entity&quot;"
+            optionLabel="VALUE.EntityName"
+            value="pageProcess.BLEntity"
+            valueRange="pageProcess.BLEntities.toTypedArray()"
+            valueType="BLEntity_Ext"
+            visible="pageProcess.BLEntityUtility_Ext.RequiredInformation.EntityRequired">
+            <PostOnChange
+              onChange="pageProcess.BLEntityUtility_Ext.entityString(false)"/>
+          </RangeInput>
+          <TextInput
+            editable="true"
+            id="AttributeNameInput"
+            label="&quot;Attribute&quot;"
+            value="pageProcess.AttributeName"
+            visible="pageProcess.BLEntityUtility_Ext.RequiredInformation.EntityRequired"/>
+          <InputSetRef
+            def="BLValueInputInputSet(pageProcess.BLInput)"
+            mode="pageProcess.BLEntityUtility_Ext.RequiredInformation.ValueType"
+            visible="pageProcess.BLEntityUtility_Ext.RequiredInformation.ValueType != null"/>
+          <InputDivider/>
+          <Label
+            label="&quot;Technical Result&quot;"/>
+          <TextAreaInput
+            boldValue="true"
+            id="commandTest"
+            label="&quot;Command&quot;"
+            numCols="150"
+            numRows="10"
+            value="pageProcess.CommandString"/>
+          <TextAreaInput
+            boldValue="true"
+            id="resultTest"
+            label="&quot;Result&quot;"
+            numCols="150"
+            numRows="10"
+            value="pageProcess.Results"/>
+        </InputColumn>
+      </DetailViewPanel>
+    </Screen>
+  </Page>
+</PCF>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc="Details about the scheme"
+  entity="SchemeProducer_Ext"
+  exportable="true"
+  table="schemeproducer_ext"
+  type="retireable">
+  <foreignkey
+    fkentity="Scheme_Ext"
+    name="Scheme"
+    nullok="false"/>
+  <foreignkey
+    fkentity="ProducerCode"
+    name="Producer"
+    nullok="true"/>
+  <typekey
+    name="BillingProducerRole"
+    nullok="true"
+    typelist="BillingProducerRole_Ext"/>
+  <column
+    desc="Override commission %"
+    name="CommissionPercent"
+    nullok="true"
+    type="percentage"/>
+  <column
+    desc="Indicator if the producer is the payer"
+    name="Payer"
+    nullok="true"
+    type="bit"/>
+  <typekey
+    name="SchemeActionType"
+    nullok="true"
+    typelist="SchemeActionType_Ext"/>
+</entity>

@@ -1,0 +1,16 @@
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleGenericMoneyDelegate_Ext">
+
+	<column name="MoneyValue1" type="money" nullok="true"/>
+	<column name="MoneyValue2" type="money" nullok="true"/>
+	<column name="MoneyValue3" type="money" nullok="true"/>
+	<column name="MoneyValue4" type="money" nullok="true"/>
+	<column name="MoneyValue5" type="money" nullok="true"/>
+	<column name="MoneyValue6" type="money" nullok="true"/>
+	<column name="MoneyValue7" type="money" nullok="true"/>
+	<column name="MoneyValue8" type="money" nullok="true"/>
+	<column name="MoneyValue9" type="money" nullok="true"/>
+	<column name="MoneyValue10" type="money" nullok="true"/>
+
+</delegate>

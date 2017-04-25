@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <!-- canVisit="perm.PolicyPeriod.view(PolicyPeriod)" -->
+  <Page
+    afterEnter="gw.api.web.PebblesUtil.addWebMessages(CurrentLocation, policyPeriod.PolicyFileMessages);"
+    canVisit=""
+    id="PolicyFile_Summary"
+    title="DisplayKey.get(&quot;Web.PolicyFile.Summary&quot;)">
+    <LocationEntryPoint
+      signature="PolicyFile_Summary(policyPeriod : PolicyPeriod, asOfDate : java.util.Date, errorMessage : String)"/>
+    <LocationEntryPoint
+      signature="PolicyFile_Summary(policyPeriod : PolicyPeriod, asOfDate : java.util.Date)"/>
+    <Variable
+      name="policyPeriod"
+      type="PolicyPeriod"/>
+    <Variable
+      name="asOfDate"
+      type="java.util.Date"/>
+    <Variable
+      name="errorMessage"
+      type="String"/>
+    <Variable
+      initialValue="gw.web.ErrorConduit.addRequestScopedErrorMessagePassThrough(errorMessage)"
+      name="placeholderUsedToTriggerPassThroughMethod"
+      recalculateOnRefresh="true"
+      type="String"/>
+    <Variable
+      initialValue="new gw.pcf.policysummary.PolicySummaryHelper(policyPeriod, asOfDate)"
+      name="policySummaryHelper"
+      type="gw.pcf.policysummary.PolicySummaryHelper"/>
+    <ScreenRef
+      def="Policy_SummaryScreen(policyPeriod, asOfDate, policySummaryHelper)"/>
+  </Page>
+</PCF>

@@ -1,0 +1,26 @@
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleSumInsuredDelegate_Ext">
+
+	<column name="SumInsuredType1" type="shorttext" nullok="true"/>
+	<column name="SumInsured1" type="money" nullok="true"/>
+	<column name="SumInsuredType2" type="shorttext" nullok="true"/>
+	<column name="SumInsured2" type="money" nullok="true"/>
+	<column name="SumInsuredType3" type="shorttext" nullok="true"/>
+	<column name="SumInsured3" type="money" nullok="true"/>
+	<column name="SumInsuredType4" type="shorttext" nullok="true"/>
+	<column name="SumInsured4" type="money" nullok="true"/>
+	<column name="SumInsuredType5" type="shorttext" nullok="true"/>
+	<column name="SumInsured5" type="money" nullok="true"/>
+	<column name="SumInsuredType6" type="shorttext" nullok="true"/>
+	<column name="SumInsured6" type="money" nullok="true"/>
+	<column name="SumInsuredType7" type="shorttext" nullok="true"/>
+	<column name="SumInsured7" type="money" nullok="true"/>
+	<column name="SumInsuredType8" type="shorttext" nullok="true"/>
+	<column name="SumInsured8" type="money" nullok="true"/>
+	<column name="SumInsuredType9" type="shorttext" nullok="true"/>
+	<column name="SumInsured9" type="money" nullok="true"/>
+	<column name="SumInsuredType10" type="shorttext" nullok="true"/>
+	<column name="SumInsured10" type="money" nullok="true"/>
+
+</delegate>

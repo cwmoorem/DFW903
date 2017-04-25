@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <DetailViewPanel
+    id="Policy_Summary_AccountDV">
+    <Require
+      name="account"
+      type="Account"/>
+    <InputColumn>
+      <Label
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Account&quot;)"/>
+      <TextInput
+        action="AccountFileForward.go(account)"
+        available="perm.Account.view(account)"
+        id="Number"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Account.Number&quot;)"
+        value="account.AccountNumber"/>
+      <TextInput
+        id="AccountName"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Account.Name&quot;)"
+        value="account.AccountHolderContact.DisplayName"/>
+      <Label
+        hideIfReadOnly="true"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.PolicyPrimary.Address&quot;)"/>
+      <InputSetRef
+        def="AddressShortInputSet(account.AccountHolderContact.PrimaryAddress)"
+        hideIfEditable="true"/>
+      <Label
+        label="DisplayKey.get(&quot;Web.AccountFile.Summary.OfficialIDs&quot;)"/>
+      <InputSetRef
+        def="OfficialIDInputSet(account.AccountHolderContact)"
+        mode="account.AccountHolderContact.Subtype"/>
+    </InputColumn>
+  </DetailViewPanel>
+</PCF>

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <Page
+    afterCancel="stateHolder.afterCancel()"
+    canEdit="true"
+    id="UWRuleDetail"
+    parent="UWRules()"
+    showUpLink="true"
+    title="DisplayKey.get(&quot;Web.BizRules.UWRuleDetail.Title&quot;, head.HeadVersion.Rule.Name)">
+    <LocationEntryPoint
+      signature="UWRuleDetail(head: UWRuleHead, version: UWRuleVersion)"/>
+    <Variable
+      name="head"
+      type="UWRuleHead"/>
+    <Variable
+      name="version"
+      type="UWRuleVersion"/>
+    <Variable
+      initialValue="new gw.web.bizrules.UWRuleDetailsStateHolder(head, gw.bizrules.UWRulesNavigationSupport.Instance, gw.web.bizrules.UWRulesPageHelper.UIConfigs, CurrentLocation)"
+      name="stateHolder"
+      type="gw.web.bizrules.UWRuleDetailsStateHolder"/>
+    <Screen>
+      <Toolbar>
+        <ToolbarButtonSetRef
+          toolbarButtonSet="StatusTransitionToolbarButtonSet(stateHolder)"/>
+        <ToolbarButtonSetRef
+          toolbarButtonSet="ConditionValidationToolbarButtonSet(stateHolder.RulePageController)"
+          visible="stateHolder.doesHeadExist()"/>
+        <ToolbarDivider/>
+        <ToolbarRangeInput
+          available="!CurrentLocation.InEditMode"
+          id="Version"
+          label="DisplayKey.get(&quot;Web.BizRules.UWRuleDetail.Version&quot;)"
+          optionLabel="stateHolder.formatVersion(VALUE)"
+          required="true"
+          sortValueRange="false"
+          value="stateHolder.SelectedVersion"
+          valueRange="stateHolder.History"
+          valueType="entity.UWRuleVersion"
+          valueWidth="250"
+          visible="stateHolder.doesHeadExist()">
+          <PostOnChange/>
+        </ToolbarRangeInput>
+      </Toolbar>
+      <AlertBar
+        action="stateHolder.SelectedVersion = stateHolder.Head.HeadVersion"
+        allowDismiss="false"
+        hideIfEditable="true"
+        id="NotLatestAlert"
+        label="DisplayKey.get('BizRules.RuleDetailsPage.Alert.NewerVersionAvailable')"
+        visible="stateHolder.NotLatestVersionSelected"/>
+      <AlertBar
+        action="stateHolder.makeLatestVersionAvailableToRunInNewBundle()"
+        allowDismiss="false"
+        available="not stateHolder.ImportInProgress and gw.bizrules.pcf.RulePermissionUIHelper.canEditRule(stateHolder.SelectedVersion)"
+        hideIfEditable="true"
+        id="UnavailableToRunAlert"
+        label="not stateHolder.ImportInProgress and gw.bizrules.pcf.RulePermissionUIHelper.canEditRule(stateHolder.getSelectedVersion()) ? DisplayKey.get('BizRules.RuleDetailsPage.Alert.UnavailableToRun.WithMakeAvailableAction') : DisplayKey.get('BizRules.RuleDetailsPage.Alert.UnavailableToRun')"
+        visible="stateHolder.LatestVersionSelected and not stateHolder.SelectedVersion.Rule.AvailableToRun and not stateHolder.SelectedVersion.Rule.ExternallyManaged"/>
+      <AlertBar
+        action="RuleImportDetailsPopup.push(stateHolder.NavigationSupport, stateHolder.Head.InProgressImportTaskEntry.Task, false)"
+        allowDismiss="false"
+        id="PendingImportAlert"
+        label="DisplayKey.get('BizRules.RuleDetailsPage.Alert.PendingImport')"
+        visible="stateHolder.ImportInProgress"/>
+      <AlertBar
+        action="stateHolder.VersionController.pushRulesWithSameNamePopup(head.HeadVersion)"
+        allowDismiss="false"
+        id="DuplicatedNameAlertBar"
+        label="DisplayKey.get('BizRules.RuleDetailsPage.Alert.DuplicatedName')"
+        visible="stateHolder.LatestVersionSelected and (not stateHolder.VersionController.isRuleNameUnique(stateHolder.SelectedVersion))"/>
+      <AlertBar
+        action="stateHolder.NavigationSupport.goToRulesListPage()"
+        allowDismiss="false"
+        hideIfEditable="true"
+        id="RuleDeletedByAnotherUserAlert"
+        label="DisplayKey.get('BizRules.RuleDetailsPage.Alert.DeletedByAnotherUser')"
+        visible="not stateHolder.doesHeadExist()"/>
+      <AlertBar
+        allowDismiss="false"
+        id="RuleIsNotManagedByBusinessRulesFrameworkAlert"
+        label="stateHolder.ExternallyManagedAlert"
+        visible="stateHolder.SelectedVersion.Rule.ExternallyManaged"/>
+      <PanelRef
+        def="UWRulePanelSet(stateHolder.SelectedVersion, false, stateHolder.RulePageController)"
+        visible="stateHolder.SelectedVersion != null"/>
+    </Screen>
+  </Page>
+</PCF>

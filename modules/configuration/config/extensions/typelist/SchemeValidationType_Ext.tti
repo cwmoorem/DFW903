@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="SchemeValidationType"
+  name="SchemeValidationType_Ext">
+  <typecode
+    code="atmost"
+    desc="At Most"
+    name="At Most"/>
+  <typecode
+    code="atleast"
+    desc="At Least"
+    name="At Least"/>
+  <typecode
+    code="exactly"
+    desc="Exactly"
+    name="Exactly"/>
+</typelist>

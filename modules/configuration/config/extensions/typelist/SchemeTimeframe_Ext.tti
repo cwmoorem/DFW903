@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="SchemeTimeframe_Ext"
+  name="SchemeTimeframe_Ext">
+  <typecode
+    code="days"
+    desc="Days"
+    name="Days"
+    priority="10"/>
+  <typecode
+    code="weeks"
+    desc="Weeks"
+    name="Weeks"
+    priority="20"/>
+  <typecode
+    code="months"
+    desc="Months"
+    name="Months"
+    priority="30"/>
+  <typecode
+    code="years"
+    desc="Years"
+    name="Years"
+    priority="40"/>
+</typelist>

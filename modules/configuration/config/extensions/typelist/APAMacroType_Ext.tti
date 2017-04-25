@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<typelist xmlns="http://guidewire.com/typelists" name="APAMacroType_Ext" desc="The type of APA Macro">
+  <typecode
+    code="online"
+    desc="Executed Online"
+    name="Online"/>
+  <typecode
+    code="batch"
+    desc="Executed in Batch Mode"
+    name="Batch"/>
+  <typecode
+    code="onlinebatch"
+    desc="Executed either in online or batch mode"
+    name="Online and Batch"/>
+</typelist>

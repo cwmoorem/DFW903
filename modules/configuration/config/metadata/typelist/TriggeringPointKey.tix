@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<internaltypelistextension xmlns="http://guidewire.com/typelists" name="TriggeringPointKey" desc="Unique key identifying a TriggeringPoint, used when invoking Business Rules">
+  <typecode
+    code="PreQuote"
+    desc="Triggers before Quote"
+    name="PreQuote"></typecode>
+  <typecode
+    code="PreQuoteRelease"
+    desc="Triggers at PreQuoteRelease"
+    name="PreQuoteRelease"></typecode>
+  <typecode
+    code="PreBind"
+    desc="Triggers at PreBind"
+    name="PreBind"></typecode>
+  <typecode
+    code="PreIssuance"
+    desc="Triggers at PreIssuance"
+    name="PreIssuance"></typecode>
+  <typecode
+    code="Referral"
+    desc="Triggers at Referral"
+    name="Referral"></typecode>
+  <typecode
+    code="Question"
+    desc="Triggers at Questions"
+    name="Question"></typecode>
+  <typecode
+    code="Renewal"
+    desc="Triggers at Renewal"
+    name="Renewal"></typecode>
+  <typecode
+    code="Manual"
+    desc="Triggers at Manual"
+    name="Manual"></typecode>
+  <typecode
+    code="Upgrade"
+    desc="Triggers at Upgrade"
+    name="Upgrade"></typecode>
+  <typecode
+    code="All"
+    desc="Triggers at every blocking point"
+    name="All">
+  </typecode>
+  <typecode
+    code="PolicyRenewalAPI"
+    desc="Triggers at PolicyRenewalAPI"
+    name="PolicyRenewalAPI"></typecode>
+</internaltypelistextension>

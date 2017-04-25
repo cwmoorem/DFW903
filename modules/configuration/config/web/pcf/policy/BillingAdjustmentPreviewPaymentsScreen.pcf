@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <Screen
+    editable="true"
+    id="BillingAdjustmentPreviewPaymentsScreen">
+    <Require
+      name="invoicesPreview"
+      type="gw.plugin.billing.BillingPaymentsPreview"/>
+    <Require
+      name="job"
+      type="Job"/>
+    <Variable
+      initialValue="false"
+      name="expandCollapseAll"
+      type="Boolean"/>
+    <Variable
+      initialValue="false"
+      name="showInvoices"
+      type="Boolean"/>
+    <DetailViewPanel
+      editable="true">
+      <InputColumn>
+        <CheckBoxInput
+          available="true"
+          editable="true"
+          id="InvoicesCheckBox"
+          label="DisplayKey.get('Web.Policy.Payment.PreviewPayments.ChargesOnInvoices')"
+          value="showInvoices"
+          visible="gw.billing.BillingPaymentsPreviewTrees.hasInvoicesToShow(invoicesPreview)">
+          <PostOnChange/>
+        </CheckBoxInput>
+      </InputColumn>
+    </DetailViewPanel>
+    <PanelRef>
+      <Toolbar>
+        <ToolbarButton
+          action="expandCollapseAll = true"
+          id="ExpandAllButton"
+          label="DisplayKey.get('Button.Expand')"/>
+        <ToolbarButton
+          action="expandCollapseAll = false"
+          id="CollapseAllButton"
+          label="DisplayKey.get('Button.Collapse')"/>
+      </Toolbar>
+      <ListViewPanel
+        id="InvoiceItemsLV">
+        <RowTree
+          canPick="false"
+          contentType="gw.billing.BillingPaymentsPreviewTreeNode"
+          elementName="itemPreview"
+          pageSize="0"
+          value="gw.billing.BillingPaymentsPreviewTrees.createBillingPaymentsPreviewTree(invoicesPreview, showInvoices, expandCollapseAll)">
+          <Row
+            useSubHeaderStyle="not itemPreview.Type.isNotBlank() and not itemPreview.ChargeCategory.isNotBlank()">
+            <DateCell
+              dateFormat="short"
+              id="InvoiceDueDate"
+              label="DisplayKey.get('Web.Policy.Payment.PreviewPayments.DueDate')"
+              value="itemPreview.DueDate"
+              width="150"/>
+            <TextCell
+              id="InvoiceType"
+              label="DisplayKey.get('Web.Policy.Payment.PreviewPayments.Type')"
+              value="itemPreview.Type"
+              valueType="String"/>
+            <TextCell
+              id="ChargeCategory"
+              label="DisplayKey.get('Web.Policy.Payment.PreviewPayments.ChargeCategory')"
+              value="itemPreview.ChargeCategory"
+              valueType="String"/>
+            <TextCell
+              formatType="currency"
+              id="OtherInvoiceAmount"
+              label="DisplayKey.get('Web.Policy.Payment.PreviewPayments.OtherPoliciesOnInvoices')"
+              value="itemPreview.InvoiceAmount"
+              valueType="gw.pl.currency.MonetaryAmount"
+              visible="showInvoices"/>
+            <TextCell
+              formatType="currency"
+              id="InvoiceAmount"
+              label="job typeis PolicyChange ? DisplayKey.get('Web.Policy.Payment.PreviewPayments.CurrentChargesForPolicy') : DisplayKey.get('Web.Policy.Payment.PreviewPayments.JobType', job.DisplayType) "
+              value="itemPreview.Amount"
+              valueType="gw.pl.currency.MonetaryAmount"/>
+            <TextCell
+              formatType="currency"
+              id="ChangeAmount"
+              label="DisplayKey.get('Web.Policy.Payment.PreviewPayments.NewChargesForPolicyChange')"
+              value="itemPreview.ChangeAmount"
+              valueType="gw.pl.currency.MonetaryAmount"
+              visible="invoicesPreview.PreviewItemsChanged.HasElements"/>
+            <TextCell
+              formatType="currency"
+              id="TotalAmount"
+              label="DisplayKey.get('Web.Policy.Payment.PreviewPayments.TotalOnInvoice')"
+              value="itemPreview.Amount + (invoicesPreview.InvoicesOtherPolicies.HasElements ? itemPreview.InvoiceAmount : new gw.pl.currency.MonetaryAmount(0, itemPreview.Amount.Currency)) + (invoicesPreview.PreviewItemsChanged.HasElements ? itemPreview.ChangeAmount : new gw.pl.currency.MonetaryAmount(0, itemPreview.Amount.Currency))"
+              valueType="gw.pl.currency.MonetaryAmount"
+              visible="showInvoices or invoicesPreview.PreviewItemsChanged.HasElements"/>
+          </Row>
+        </RowTree>
+      </ListViewPanel>
+    </PanelRef>
+  </Screen>
+</PCF>

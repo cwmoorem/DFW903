@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../../pcf.xsd">
+  <Page
+    canEdit="false"
+    canVisit="true"
+    id="BLMain"
+    title="&quot;Business Language Managememt&quot;">
+    <Variable
+      initialValue="new acc.pc.bl.BLMainPageProcess_Ext()"
+      name="pageProcess"
+      type="acc.pc.bl.BLMainPageProcess_Ext"/>
+    <Screen>
+      <Toolbar>
+        <ToolbarButton
+          id="addButton"
+          label="&quot;Add&quot;">
+          <MenuItem
+            action="BLEntityDetail_Ext.go(null, false, BLEntityType_Ext.TC_ENTITY)"
+            id="EntityItemID"
+            label="&quot;Add Entity&quot;"/>
+          <MenuItem
+            action="BLEntityDetail_Ext.go(null, false, BLEntityType_Ext.TC_COMMAND)"
+            id="CommandItemID"
+            label="&quot;Add Command&quot;"/>
+        </ToolbarButton>
+        <CheckedValuesToolbarButton
+          checkedRowAction="pageProcess.clone(blentity)"
+          id="cloneButton"
+          iterator="blentityIterator"
+          label="&quot;Clone&quot;"/>
+        <ToolbarRangeInput
+          editable="true"
+          id="filterID"
+          label="&quot;Filter&quot;"
+          optionLabel="VALUE.Name"
+          value="pageProcess.filter"
+          valueRange="pageProcess.filterList.toTypedArray()"
+          valueType="acc.pc.bl.BLMainPageProcess_Ext.BLFilter">
+          <PostOnChange/>
+        </ToolbarRangeInput>
+        <ToolbarButton
+          action="new acc.pc.bl.BLEntityLoad_Ext().loadBase()"
+          id="LoadButton"
+          label="&quot;Load Base&quot;"/>
+      </Toolbar>
+      <ListViewPanel>
+        <RowIterator
+          checkBoxVisible="true"
+          editable="false"
+          elementName="blentity"
+          hasCheckBoxes="true"
+          id="blentityIterator"
+          value="pageProcess.filteredBL()"
+          valueType="BLEntity_Ext[]">
+          <Row>
+            <TextCell
+              action="BLEntityDetail_Ext.go(blentity)"
+              id="entityNameCell"
+              label="&quot;Name&quot;"
+              value="blentity.getEntityName()"/>
+            <TypeKeyCell
+              action="BLEntityDetail_Ext.go(blentity)"
+              id="entityTypeCell"
+              label="&quot;Type&quot;"
+              value="blentity.getBLEntityType()"
+              valueType="BLEntityType_Ext"/>
+            <BooleanRadioCell
+              id="protectedcell"
+              label="&quot;Protected&quot;"
+              value="blentity.protectedEntity"/>
+          </Row>
+        </RowIterator>
+      </ListViewPanel>
+    </Screen>
+  </Page>
+</PCF>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Page
+    canEdit="true"
+    canVisit="true"
+    id="SchemeSearchKey"
+    parent="SchemeLocationGroup()"
+    title="&quot;Search Keys&quot;">
+    <Variable
+      initialValue="new acc.pc.scheme.pageprocess.SchemeSerachKeysPageProcess()"
+      name="pageProcess"
+      type="acc.pc.scheme.pageprocess.SchemeSerachKeysPageProcess"/>
+    <Screen>
+      <Toolbar>
+        <EditButtons
+          cancelVisible="true"
+          editVisible="true"
+          id="editbuttons"
+          updateVisible="true"/>
+      </Toolbar>
+      <PanelRef>
+        <Toolbar>
+          <IteratorButtons
+            addVisible="true"
+            id="addbuttons"
+            iterator="serachkeysitterator"
+            removeVisible="true"/>
+          <ToolbarDivider/>
+          <ToolbarButton
+            action="pageProcess.validateKeys()"
+            id="ToolbarButton"
+            label="&quot;Validate&quot;"
+            visible="CurrentLocation.InEditMode"/>
+          <ToolbarButton
+            action="pageProcess.validateKeys()"
+            id="SaveButton"
+            label="&quot;Temporary Save&quot;"
+            visible="CurrentLocation.InEditMode"/>
+        </Toolbar>
+        <ListViewPanel>
+          <RowIterator
+            editable="true"
+            elementName="searchKey"
+            id="serachkeysitterator"
+            pageSize="0"
+            toCreateAndAdd="pageProcess.addKey()"
+            toRemove="pageProcess.removeKey(searchKey)"
+            value="pageProcess.searchKeys"
+            valueType="java.util.List&lt;entity.SchemeSearchKey_Ext&gt;">
+            <Row>
+              <TextCell
+                editable="true"
+                id="keycell"
+                label="&quot;Search Key&quot;"
+                required="true"
+                value="searchKey.SearchKey"/>
+              <TextCell
+                editable="true"
+                id="rootcell"
+                label="&quot;Root Entity&quot;"
+                numCols="100"
+                required="true"
+                value="searchKey.RootEntity"/>
+              <TextCell
+                editable="true"
+                id="pathcell"
+                label="&quot;XPath String&quot;"
+                numCols="100"
+                required="true"
+                value="searchKey.XPath"/>
+            </Row>
+          </RowIterator>
+        </ListViewPanel>
+      </PanelRef>
+    </Screen>
+  </Page>
+</PCF>

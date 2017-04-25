@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="ScheduleIdentityType_Ext"
+  name="ScheduleIdentityType_Ext">
+  <typecode
+    code="string"
+    desc="String"
+    name="String"/>
+  <typecode
+    code="decimal"
+    desc="Decimal"
+    name="Decimal"/>
+  <typecode
+    code="integer"
+    desc="Integer"
+    name="Integer"/>
+</typelist>

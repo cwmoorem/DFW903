@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="SchemeOperatorType"
+  name="SchemeOperatorType_Ext">
+  <typecode
+    code="equals"
+    desc="Equals"
+    name="Equals"/>
+  <typecode
+    code="lessthan"
+    desc="Less than"
+    name="Less than"/>
+  <typecode
+    code="greaterthan"
+    desc="Greater than"
+    name="Greater than"/>
+</typelist>

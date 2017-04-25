@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<typelist xmlns="http://guidewire.com/typelists" name="APAMacroInput_Ext" desc="Information needed prior to the macro running">
+  <typecode
+    code="account"
+    desc="Account"
+    name="Account"/>
+  <typecode
+    code="policyperiod"
+    desc="Policy Period"
+    name="Policy Period"/>
+  <typecode
+    code="transactiondate"
+    desc="Transaction Date"
+    name="Transaction Date"/>
+  <typecode
+    code="producer"
+    desc="Producer"
+    name="Producer"/>
+  <typecode
+    code="producercode"
+    desc="Producer"
+    name="Producer Code"/>
+  <typecode
+    code="productcode"
+    desc="Product Code"
+    name="Product Code"/>
+  <typecode
+    code="quotetype"
+    desc="Quote Type"
+    name="Quote Type"/>
+  <typecode
+    code="accountnumber"
+    desc="Account Number"
+    name="Account Number"/>
+  <typecode
+    code="policynumber"
+    desc="Policy Number"
+    name="Policy Number"/>
+  <typecode
+    code="product"
+    desc="Product"
+    name="Product"/>
+  <typecode
+    code="cancellationsource"
+    desc="Cancellation Source"
+    name="Cancellation Source"/>
+  <typecode
+    code="cancellationreasoncode"
+    desc="Cancellation Reason Code"
+    name="Cancellation Reason Code"/>
+  <typecode
+    code="cancellationdescription"
+    desc="Cancellation Description"
+    name="Cancellation Description"/>
+  <typecode
+    code="cancellationcalculationmethod"
+    desc="Cancellation Calculation Method"
+    name="Cancellation Calculation Method"/>
+</typelist>

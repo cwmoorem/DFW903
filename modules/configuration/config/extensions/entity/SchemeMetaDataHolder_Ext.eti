@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="SchemeMetaDataHolder_Ext">
+  <column
+    desc="Meta information related to schema applied for entity"
+    name="SchemeMetaData"
+    nullok="true"
+    type="longtext"/>
+</delegate>

@@ -1,0 +1,16 @@
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleGenericStringShortDelegate_Ext">
+
+	<column name="StringValue1" type="shorttext" nullok="true"/>
+	<column name="StringValue2" type="shorttext" nullok="true"/>
+	<column name="StringValue3" type="shorttext" nullok="true"/>
+	<column name="StringValue4" type="shorttext" nullok="true"/>
+	<column name="StringValue5" type="shorttext" nullok="true"/>
+	<column name="StringValue6" type="shorttext" nullok="true"/>
+	<column name="StringValue7" type="shorttext" nullok="true"/>
+	<column name="StringValue8" type="shorttext" nullok="true"/>
+	<column name="StringValue9" type="shorttext" nullok="true"/>
+	<column name="StringValue10" type="shorttext" nullok="true"/>
+
+</delegate>

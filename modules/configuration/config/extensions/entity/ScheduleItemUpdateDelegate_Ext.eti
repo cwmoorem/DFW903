@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleItemUpdateDelegate_Ext">
+  <column
+    name="FixedId"
+    nullok="true"
+    type="longint"/>
+  <column
+    desc="Start date"
+    name="StartDate"
+    nullok="true"
+    type="datetime"/>
+  <column
+    desc="End date"
+    name="EndDate"
+    nullok="true"
+    type="datetime"/>
+</delegate>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="SchemeCostType_Ext"
+  name="SchemeCostType_Ext">
+  <typecode
+    code="nocost"
+    desc="No Cost"
+    name="No Cost"/>
+  <typecode
+    code="discount"
+    desc="Discount"
+    name="Discount"/>
+</typelist>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="ScheduleFunction_Ext"
+  name="ScheduleFunction_Ext">
+  <typecode
+    code="update"
+    desc="Update"
+    name="Update"
+    priority="10"/>
+  <typecode
+    code="version"
+    desc="Version"
+    name="Version"
+    priority="20"/>
+  <typecode
+    code="replace"
+    desc="Replace"
+    name="Replace"
+    priority="30"/>
+</typelist>

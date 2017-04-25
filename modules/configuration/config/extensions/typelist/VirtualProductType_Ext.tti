@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<typelist xmlns="http://guidewire.com/typelists" name="VirtualProductType_Ext" desc="Type of the virtual product">
+  <typecode
+    code="open"
+    desc="Open virtual product that is available to any organisation"
+    name="Open"
+    priority="10"/>
+  <typecode
+    code="closed"
+    desc="Closed virtual product that is only available to a defined organisation"
+    name="Closed"
+    priority="20"/>
+</typelist>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <DetailViewPanel
+    id="BillingAdjustmentsDV"
+    mode="MidtermInstallments">
+    <Require
+      name="policyPeriod"
+      type="PolicyPeriod"/>
+    <Require
+      name="policyPeriodBillingInstructionsManager"
+      type="gw.billing.PolicyPeriodBillingInstructionsManager"/>
+    <InputColumn>
+      <Label
+        label="DisplayKey.get(&quot;Web.Policy.Payment.MidtermChange.BillingIssuanceOptions&quot;)"
+        visible="true"/>
+      <CheckBoxInput
+        editable="perm.PolicyPeriod.overridebilling"
+        id="OverrideBillingAllocation"
+        label="DisplayKey.get(&quot;Web.Policy.Payment.MidtermChange.OverrideBillingAllocation&quot;)"
+        value="policyPeriod.OverrideBillingAllocation">
+        <PostOnChange/>
+      </CheckBoxInput>
+      <TextInput
+        editable="perm.PolicyPeriod.overridebilling"
+        formatType="percentagePoints"
+        id="BillImmediately"
+        label="DisplayKey.get(&quot;Web.Policy.Payment.MidtermChange.BillImmediately&quot;)"
+        value="policyPeriod.BillImmediatelyPercentage"
+        valueType="java.math.BigDecimal"
+        visible="policyPeriod.OverrideBillingAllocation"/>
+      <RangeInput
+        editable="perm.PolicyPeriod.overridebilling and policyPeriod.OverrideBillingAllocation"
+        id="AllocationOfRemainder"
+        label="DisplayKey.get(&quot;Web.Policy.Payment.MidtermChange.AllocationOfRemainder&quot;)"
+        required="false"
+        value="policyPeriod.AllocationOfRemainder"
+        valueRange="typekey.BillingRemainderAllocate.getTypeKeys( true )"
+        valueType="typekey.BillingRemainderAllocate"
+        visible="policyPeriod.OverrideBillingAllocation"/>
+      <InputDivider/>
+      <Label
+        label="DisplayKey.get(&quot;Web.Policy.Payment.Schedule&quot;)"/>
+      <ListViewInput
+        def="BillingAdjustmentsInstallmentsLV(policyPeriod, policyPeriodBillingInstructionsManager.MaybeGetInstallmentPlanAsArray, policyPeriodBillingInstructionsManager)"
+        editable="false"
+        labelAbove="true"
+        visible="policyPeriod.InstallmentsPlanSelected">
+        <Toolbar/>
+      </ListViewInput>
+    </InputColumn>
+  </DetailViewPanel>
+</PCF>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc="Holds values that are arrays for the scheme detail"
+  entity="SchemeDetailArrayValue_Ext"
+  exportable="true"
+  table="schemedetarrval_ext"
+  type="retireable">
+
+  <implementsEntity name="SchemeValueDelegate_Ext"/>
+
+  <foreignkey
+    fkentity="SchemeDetail_Ext"
+    name="SchemeDetail"
+    nullok="false"/>
+
+  <column
+    desc="Value for the comparator"
+    name="Comparator"
+    nullok="true"
+    type="varchar">
+    <columnParam name="size" value="255"/>
+  </column>
+
+  <column
+    desc="Code referencing the Parent of the comparator if needed"
+    name="ParentCode"
+    nullok="true"
+    type="varchar">
+    <columnParam name="size" value="255"/>
+  </column>
+
+</entity>

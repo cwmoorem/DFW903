@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc=""
+  entity="SchemeConditionParam_Ext"
+  exportable="true"
+  table="schemeaconditionparam_ext"
+  type="retireable">
+
+  <foreignkey
+    fkentity="SchemeCondition_Ext"
+    name="SchemeCondition"
+    nullok="false"/>
+
+  <typekey
+    name="ParamValueType"
+    nullok="false"
+    typelist="SchemeValueType_Ext"/>
+
+  <column
+    name="Parameter"
+    type="varchar"
+    nullok="false"
+    desc="Code of the scheme condition parameter">
+    <columnParam name="size" value="30"/>
+  </column>
+
+  <column
+    name="Name"
+    type="varchar"
+    nullok="false"
+    desc="Name of the scheme condition parameter">
+    <columnParam name="size" value="255"/>
+  </column>
+	
+</entity>

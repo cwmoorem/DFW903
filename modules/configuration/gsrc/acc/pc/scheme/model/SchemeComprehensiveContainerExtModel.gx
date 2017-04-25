@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<gx-model type="acc.pc.scheme.SchemeComprehensiveContainerExt" xmlns="http://guidewire.com/gx" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <includes>
+    <include
+      path="Scheme"
+      type="entity.Scheme_Ext"
+      propertyInclusionType="NORMAL"
+      model="acc.pc.scheme.model.scheme_extmodel"/>
+  </includes>
+</gx-model>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<subtype
+  xmlns="http://guidewire.com/datamodel"
+  desc="Underwriter Rule Head"
+  entity="UWRuleHead"
+  final="true"
+  supertype="RuleHead">
+  <implementsInterface
+    iface="com.guidewire.bizrules.domain.RuleHeadDomainMethods"
+    impl="com.guidewire.pc.domain.bizrules.impl.UWRuleHeadImpl"/>
+  <foreignkey
+    fkentity="UWRuleVersion"
+    name="HeadVersion"
+    nullok="true"/>
+  <foreignkey
+    fkentity="UWRuleVersion"
+    name="DeployedVersion"
+    nullok="true"/>
+</subtype>

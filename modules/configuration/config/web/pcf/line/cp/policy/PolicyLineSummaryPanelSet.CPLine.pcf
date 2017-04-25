@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../../pcf.xsd">
+  <PanelSet
+    id="PolicyLineSummaryPanelSet"
+    mode="CPLine">
+    <Require
+      name="line"
+      type="PolicyLine"/>
+    <Require
+      name="jobWizardHelper"
+      type="gw.api.web.job.JobWizardHelper"/>
+    <PanelRef
+      def="CPBuildingsAndLocationsLV(line as CommercialPropertyLine, false, null)">
+      <TitleBar
+        title="DisplayKey.get(&quot;Web.LineWizardMenu.Buildings&quot;)"/>
+      <Toolbar/>
+    </PanelRef>
+    <DetailViewPanel>
+      <InputColumn>
+        <HiddenInput
+          id="spacer"
+          value="&quot;&quot;"
+          valueType="java.lang.String"/>
+      </InputColumn>
+    </DetailViewPanel>
+    <PanelRef
+      def="CPBlanketPanelSet(line as CommercialPropertyLine, false, null)">
+      <TitleBar
+        title="DisplayKey.get(&quot;Web.LineWizardMenu.Blankets&quot;)"/>
+    </PanelRef>
+  </PanelSet>
+</PCF>

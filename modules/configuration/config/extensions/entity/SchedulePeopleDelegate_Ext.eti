@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="SchedulePeopleDelegate_Ext">
+  <column
+    desc="First name."
+    name="FirstName"
+    nullok="true"
+    supportsLinguisticSearch="true"
+    type="firstname"/>
+  <column
+    desc="Last name."
+    name="LastName"
+    nullok="true"
+    supportsLinguisticSearch="true"
+    type="lastname"/>
+  <column
+    desc="Full Name First and Last Names."
+    name="FullName"
+    nullok="true"
+    supportsLinguisticSearch="true"
+    type="shorttext"/>
+  <column
+    desc="ID Number"
+    name="IDNumber"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="30"/>
+  </column>
+</delegate>

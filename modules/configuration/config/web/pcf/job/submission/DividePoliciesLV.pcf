@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <ListViewPanel
+    id="DividePoliciesLV">
+    <Require
+      name="period"
+      type="PolicyPeriod"/>
+    <Variable
+      initialValue="gw.web.job.submission.DividePoliciesLVUIHelper.filteredDividedPolicies(period)"
+      name="splitPolicies"
+      type="Policy[]"/>
+    <RowIterator
+      editable="false"
+      elementName="splitPolicy"
+      id="splitPolicy"
+      pageSize="0"
+      value="splitPolicies"
+      valueType="entity.Policy[]">
+      <Variable
+        initialValue="(splitPolicy.BoundPeriods.Count &gt; 0)"
+        name="isBound"
+        type="boolean"/>
+      <Variable
+        initialValue="isBound ? splitPolicy.LatestBoundPeriod : splitPolicy.LatestPeriod"
+        name="splitPeriod"
+        type="PolicyPeriod"/>
+      <Row
+        useArchivedStyle="gw.web.job.submission.DividePoliciesLVUIHelper.useArchiveStyle(splitPeriod,isBound)">
+        <DateCell
+          id="createTime"
+          label="DisplayKey.get(&quot;Web.PolicyFile.Summary.DividePolicies.CreatedDate&quot;)"
+          value="splitPolicy.CreateTime"/>
+        <TextCell
+          action="gw.web.job.submission.DividePoliciesLVUIHelper.forwardToJobOrPolicy(splitPeriod, isBound)"
+          align="left"
+          id="policyNumber"
+          label="DisplayKey.get(&quot;Web.PolicyFile.Summary.DividePolicies.PolicyOrJob&quot;)"
+          value="(isBound) ? splitPeriod.PolicyNumberDisplayString : splitPeriod.Job.JobNumber"/>
+        <TextCell
+          id="status"
+          label="DisplayKey.get(&quot;Web.PolicyFile.Summary.DividePolicies.Status&quot;)"
+          value="splitPeriod.PeriodDisplayStatus"/>
+        <TextCell
+          id="account"
+          label="DisplayKey.get(&quot;Web.PolicyFile.Summary.DividePolicies.Account&quot;)"
+          value="splitPeriod.Policy.Account.AccountNumber"/>
+        <TextCell
+          id="acountHolder"
+          label="DisplayKey.get(&quot;Web.PolicyFile.Summary.DividePolicies.AccountHolder&quot;)"
+          value="splitPeriod.Policy.Account.AccountHolderContact.DisplayName"/>
+        <AltUserCell
+          id="underwriter"
+          label="DisplayKey.get(&quot;Web.PolicyFile.Summary.DividePolicies.Underwriter&quot;)"
+          value="splitPeriod.Job.Underwriter"/>
+      </Row>
+    </RowIterator>
+  </ListViewPanel>
+</PCF>

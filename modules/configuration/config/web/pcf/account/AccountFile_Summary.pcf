@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <Page
+    canEdit="perm.Account.edit(account)"
+    canVisit="perm.Account.view(account) and perm.System.accountsummary"
+    id="AccountFile_Summary"
+    title="DisplayKey.get(&quot;Web.AccountFile.Summary.Title&quot;)"
+    validationParameter="account">
+    <LocationEntryPoint
+      signature="AccountFile_Summary(account : Account)"/>
+    <Variable
+      name="account"
+      type="Account"/>
+    <Screen
+      id="AccountFile_SummaryScreen">
+      <Variable
+        initialValue="gw.job.JobFilters.StatusFilterSet"
+        name="statusFilterSet"
+        type="java.util.List&lt;gw.api.ui.DisplayedObject&lt;java.lang.Boolean&gt;&gt;"/>
+      <Variable
+        initialValue="gw.job.JobFilters.OpenStatusFilter"
+        name="statusFilterChoice"
+        type="gw.api.ui.DisplayedObject&lt;java.lang.Boolean&gt;"/>
+      <Toolbar>
+        <ToolbarButton
+          action="null"
+          id="AccountFile_Summary_RefreshButton"
+          label="DisplayKey.get(&quot;Button.Refresh&quot;)"/>
+        <ToolbarButton
+          action="EditAccountPopup.push(account)"
+          id="EditAccount"
+          label="DisplayKey.get(&quot;Web.AccountFile.Summary.EditAccount&quot;)"
+          shortcut="E"
+          visible="account.Editable and perm.Account.edit(account)"/>
+        <ToolbarButton
+          id="ChangeAccountHolder"
+          label="DisplayKey.get(&quot;Web.Account.Contact.ChangeAccountHolder&quot;)"
+          subMenuOnDemand="true"
+          visible="perm.Account.edit(account)">
+          <MenuItem
+            action="ChangeAccountHolderToNewContactPopup.push(account, typekey.ContactType.TC_PERSON)"
+            id="ChangeToPerson"
+            label="DisplayKey.get(&quot;Web.ContactDetail.NewPerson&quot;)"/>
+          <MenuItem
+            action="ChangeAccountHolderToNewContactPopup.push(account, typekey.ContactType.TC_COMPANY)"
+            id="ChangeToCompany"
+            label="DisplayKey.get(&quot;Web.ContactDetail.NewCompany&quot;)"/>
+          <MenuItemDivider/>
+          <MenuItemIterator
+            elementName="acctContact"
+            id="contactIterator"
+            value="account.ActiveAccountContacts.subtract({account.AccountHolder.AccountContact}).toTypedArray()"
+            valueType="entity.AccountContact[]">
+            <IteratorSort
+              sortBy="acctContact"
+              sortOrder="1"/>
+            <MenuItem
+              action="changeAccountHolderToContact(acctContact.Contact)"
+              id="UnassignedContact"
+              label="acctContact"/>
+          </MenuItemIterator>
+          <MenuItemDivider/>
+          <PickerMenuItem
+            action="ContactSearchPopup.push(TC_ACCOUNTHOLDER)"
+            id="Search"
+            label="DisplayKey.get(&quot;Web.Button.FromAddressBook&quot;)"
+            onPick="changeAccountHolderToContact(PickedValue)"/>
+        </ToolbarButton>
+      </Toolbar>
+      <PanelRef
+        def="AccountFile_Summary_BasicInfoDV(account)"/>
+      <PanelRow>
+        <PanelColumn>
+          <PanelRef
+            def="AccountFile_Summary_ActivitiesLV(account)">
+            <TitleBar
+              title="DisplayKey.get(&quot;Web.PolicyFile.Summary.Activities&quot;)"/>
+            <Toolbar/>
+          </PanelRef>
+          <PanelRef
+            def="AccountFile_Summary_PolicyTermsLV(account)">
+            <TitleBar
+              title="DisplayKey.get(&quot;Web.AccountFile.Summary.PolicyTerms&quot;)"/>
+            <Toolbar/>
+          </PanelRef>
+        </PanelColumn>
+      </PanelRow>
+      <PanelRow>
+        <PanelColumn>
+          <PanelRef>
+            <TitleBar
+              title="DisplayKey.get(&quot;Web.AccountFile.Summary.PendingWorkOrders&quot;)"/>
+            <Toolbar>
+              <ToolbarRangeInput
+                id="WorkOrdersCompletenessFilter"
+                sortValueRange="false"
+                value="statusFilterChoice"
+                valueRange="statusFilterSet"
+                valueType="gw.api.ui.DisplayedObject&lt;java.lang.Boolean&gt;">
+                <PostOnChange
+                  target="AccountFile_Summary_WorkOrdersLV"/>
+              </ToolbarRangeInput>
+            </Toolbar>
+            <ListViewPanel
+              id="AccountFile_Summary_WorkOrdersLV">
+              <Variable
+                initialValue="account.getAllJobs(statusFilterChoice.value, null, null, User.util.CurrentUser)"
+                name="jobs"
+                recalculateOnRefresh="true"
+                type="gw.api.database.IQueryBeanResult&lt;Job&gt;"/>
+              <RowIterator
+                editable="false"
+                elementName="job"
+                value="jobs.toCollection().where(\ j -&gt; not (j typeis Audit and j.AuditInformation.IsReversal))?.toTypedArray()"
+                valueType="entity.Job[]">
+                <Row
+                  useArchivedStyle="gw.pcf.ArchiveHelper.getArchivedStyle(job)">
+                  <DateCell
+                    id="CreateDate"
+                    label="DisplayKey.get(&quot;Web.AccountFile.Summary.WorkOrdersLV.CreateDate&quot;)"
+                    sortOrder="1"
+                    value="job.CreateTime"/>
+                  <TextCell
+                    action="JobForward.go(job)"
+                    id="WorkOrderNumber"
+                    label="DisplayKey.get(&quot;Web.AccountFile.Summary.WorkOrdersLV.WorkOrderNumber&quot;)"
+                    value="job.JobNumber"/>
+                  <TextCell
+                    enableSort="false"
+                    id="JobStatus"
+                    label="DisplayKey.get(&quot;Web.AccountFile.Summary.WorkOrdersLV.JobStatus&quot;)"
+                    value="job.DisplayStatus"/>
+                  <TextCell
+                    action="PolicyFileForward.go(job.LatestPeriod.PolicyNumber)"
+                    available="job.LatestPeriod.PolicyNumberAssigned"
+                    enableSort="false"
+                    id="PolicyNumber"
+                    label="DisplayKey.get(&quot;Web.AccountFile.Summary.WorkOrdersLV.PolicyNumber&quot;)"
+                    value="job.LatestPeriod.PolicyNumberDisplayString"/>
+                  <TextCell
+                    id="Product"
+                    label="DisplayKey.get(&quot;Web.AccountFile.Summary.WorkOrdersLV.Product&quot;)"
+                    sortBy="job.Policy.ProductCode"
+                    value="job.Policy.Product"
+                    valueType="gw.api.productmodel.Product"/>
+                  <TextCell
+                    enableSort="false"
+                    id="WorkOrderType"
+                    label="DisplayKey.get(&quot;Web.AccountFile.Summary.WorkOrdersLV.WorkOrderType&quot;)"
+                    value="job.DisplayType"/>
+                  <AltUserCell
+                    enableSort="false"
+                    id="Underwriter"
+                    label="DisplayKey.get(&quot;Web.AccountFile.Summary.WorkOrdersLV.Underwriter&quot;)"
+                    value="job.Underwriter"/>
+                </Row>
+              </RowIterator>
+            </ListViewPanel>
+          </PanelRef>
+        </PanelColumn>
+      </PanelRow>
+    </Screen>
+    <Code><![CDATA[// this method is here because the AB Search page is read only, and simply selects a Contact to return - it does not perform the domain logic to do the add like the NewAccountContactPopup does
+// additionally, this page is read-only itself, so we need to get a writeable bundle, load the Account in it, call the domain logic and then commit the bundle
+function changeAccountHolderToContact(contact : Contact) {
+  // if the contact is new, we can use its' bundle - otherwise, need to make our own as this page is read-only
+  if (contact.New) {
+    var localAccount = contact.Bundle.add(account)
+    localAccount.changeAccountHolderTo(contact)
+    contact.Bundle.commit()
+  } else {
+    gw.transaction.Transaction.runWithNewBundle(\bundle -> {
+      var localAccount = bundle.add(account)
+      localAccount.changeAccountHolderTo(contact)
+    })
+  }
+}
+]]></Code>
+  </Page>
+</PCF>

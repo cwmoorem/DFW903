@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../../pcf.xsd">
+  <Page
+    id="APAMain_Ext"
+    title="&quot;Automated Policy Action Macros&quot;">
+    <Variable
+      initialValue="new acc.pc.apa.pageprocess.APAMainPageProcess_Ext()"
+      name="pageProcess"
+      type="acc.pc.apa.pageprocess.APAMainPageProcess_Ext"/>
+    <Screen>
+      <Toolbar>
+        <ToolbarButton
+          action="pcf.APAMacroDetail_Ext.go()"
+          id="addButton"
+          label="&quot;Add&quot;"/>
+        <ToolbarRangeInput
+          editable="true"
+          id="filterID"
+          label="&quot;Filter&quot;"
+          optionLabel="VALUE.Name"
+          required="true"
+          value="pageProcess.filter"
+          valueRange="pageProcess.filterList.toTypedArray()"
+          valueType="acc.pc.apa.pageprocess.APAMainPageProcess_Ext.APAFilter">
+          <PostOnChange/>
+        </ToolbarRangeInput>
+      </Toolbar>
+      <ListViewPanel>
+        <RowIterator
+          editable="false"
+          elementName="apaMacro"
+          id="APAMacroIterator"
+          value="pageProcess.filteredAPA()"
+          valueType="APAMacro_Ext[]">
+          <Row>
+            <TextCell
+              action="pcf.APAMacroDetail_Ext.go(apaMacro)"
+              id="codeCell"
+              label="&quot;Code&quot;"
+              value="apaMacro.Code"/>
+            <TextCell
+              action="pcf.APAMacroDetail_Ext.go(apaMacro)"
+              id="NameCell"
+              label="&quot;Name&quot;"
+              value="apaMacro.Name"/>
+            <TypeKeyCell
+              id="MacroTypeCell"
+              label="&quot;Macro Type&quot;"
+              value="apaMacro.APAMcroType"
+              valueType="APAMacroType_Ext"/>
+          </Row>
+        </RowIterator>
+      </ListViewPanel>
+    </Screen>
+  </Page>
+</PCF>

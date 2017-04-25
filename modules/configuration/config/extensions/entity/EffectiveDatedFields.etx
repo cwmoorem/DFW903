@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<extension
+  xmlns="http://guidewire.com/datamodel"
+  entityName="EffectiveDatedFields">
+  <array
+    arrayentity="SchemeLink_Ext"
+    desc="Links the Schemes to the Policy"
+    name="SchemeLinks"/>
+</extension>

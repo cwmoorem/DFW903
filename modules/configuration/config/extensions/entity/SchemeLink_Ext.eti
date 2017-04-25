@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<entity
+  effDatedBranchType="PolicyPeriod"
+  exportable="true"
+  xmlns="http://guidewire.com/datamodel"
+  entity="SchemeLink_Ext"
+  table="schemelink_ext"
+  type="effdated">
+  <foreignkey
+    fkentity="EffectiveDatedFields"
+    name="EffectiveDatedFields"
+    nullok="false"/>
+  <foreignkey
+    fkentity="Scheme_Ext"
+    name="Scheme"
+    nullok="false"/>
+  <column
+    name="SchemeOrder"
+    nullok="false"
+    type="integer"/>
+</entity>

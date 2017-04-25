@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="VirtualPriductFlavourDelegate_Ext"
+  extendable="true">
+  <foreignkey
+    fkentity="VirtualProductFlavour_Ext"
+    name="VirtualProductFlavour_Ext"
+    nullok="true"/>
+</delegate>

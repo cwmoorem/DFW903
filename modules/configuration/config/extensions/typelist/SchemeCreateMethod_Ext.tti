@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="SchemeCreateMethod"
+  name="SchemeCreateMethod_Ext">
+  <typecode
+    code="Manual"
+    desc="Manual"
+    name="Manual"/>
+  <typecode
+    code="NegotiationGenerated"
+    desc="Generated automatically from negotiation categories data"
+    name="Negotiation Generated"/>
+</typelist>

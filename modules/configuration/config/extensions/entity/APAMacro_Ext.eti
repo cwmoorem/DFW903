@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  entity="APAMacro_Ext"
+  desc="APA Macros"
+  table="apamacro_ext"
+  type="retireable">
+  <column
+    desc="Code used to identify the maco"
+    name="Code"
+    nullok="false"
+    type="mediumtext"/>
+  <column
+    desc="Name of the Macro"
+    name="Name"
+    nullok="false"
+    type="mediumtext"/>
+  <array
+    arrayentity="APAMacroDetail_Ext"
+    desc="Detail actions for the macro"
+    name="APAMacroDetails"/>
+  <array
+    arrayentity="APAMacroInput_Ext"
+    desc="Inputs required for the macro"
+    name="APAMacroInputs"/>
+  <typekey
+    desc="How the Macro is to be executed"
+    name="APAMcroType"
+    nullok="false"
+    typelist="APAMacroType_Ext"/>
+</entity>

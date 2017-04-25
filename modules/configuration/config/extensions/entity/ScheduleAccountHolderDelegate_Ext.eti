@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleAccountHolderDelegate_Ext">
+  <column
+    desc="First name."
+    name="AccountHolderFirstName"
+    nullok="true"
+    supportsLinguisticSearch="true"
+    type="firstname"/>
+  <column
+    desc="Last name."
+    name="AccountHolderLastName"
+    nullok="true"
+    supportsLinguisticSearch="true"
+    type="lastname"/>
+  <column
+    desc="Full Name First and Last Names."
+    name="AccountHolderFullName"
+    nullok="true"
+    supportsLinguisticSearch="true"
+    type="shorttext"/>
+  <column
+    desc="ID Number"
+    name="AccountHolderIDNumber"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="30"/>
+  </column>
+</delegate>

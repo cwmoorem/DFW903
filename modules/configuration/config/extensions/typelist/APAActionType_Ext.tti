@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<typelist xmlns="http://guidewire.com/typelists" name="APAActionType_Ext" desc="The various actions that APA can take">
+  <typecode
+    code="startsubmission"
+    desc="Start Submission"
+    name="Start Submission"/>
+  <typecode
+    code="startrenewal"
+    desc="Start Renewal"
+    name="Start Renewal"/>
+  <typecode
+    code="startrewrite"
+    desc="Start Rewrite"
+    name="Start Rewrite"/>
+  <typecode
+    code="startpolicychange"
+    desc="Start Policy Change"
+    name="Start Policy Change"/>
+  <typecode
+    code="startpolicycancellation"
+    desc="Start Policy Cancellation"
+    name="Start Policy Cancellation"/>
+  <typecode
+    code="quotepolicychange"
+    desc="Quote Policy Change"
+    name="Quote Policy Change"/>
+  <typecode
+    code="quoterenewal"
+    desc="Quote Renewal"
+    name="Quote Renewal"/>
+  <typecode
+    code="quoterewrite"
+    desc="Quote Rewrite"
+    name="Quote Rewrite"/>
+  <typecode
+    code="quotepolicycancellation"
+    desc="Quote Policy Cancellation"
+    name="Quote Policy Cancellation"/>
+  <typecode
+    code="issuepolicycancellationimmediatly"
+    desc="Issue Policy Cancellation Immediatly"
+    name="Issue Policy Cancellation Immediatly"/>
+  <typecode
+    code="startpolicyreinstatement"
+    desc="Start Policy Reinstatement"
+    name="Start Policy Reinstatement"/>
+  <typecode
+    code="quotepolicyreinstatement"
+    desc="Quote Policy Reinstatement"
+    name="Quote Policy Reinstatement"/>
+  <typecode
+    code="issuepolicyreinstatement"
+    desc="Issue Policy Reinstatement"
+    name="Issue Policy Reinstatement_copy"/>
+  <typecode
+    code="issuepolicychange"
+    desc="Issue Policy Change"
+    name="Issue Policy Change"/>
+  <typecode
+    code="issuerewrite"
+    desc="Issue Rewrite"
+    name="Issue Rewrite"/>
+  <typecode
+    code="setdata"
+    desc="Set Data"
+    name="Set Data"/>
+  <typecode
+    code="includemacro"
+    desc="Include Macro"
+    name="Include Macro"/>
+</typelist>

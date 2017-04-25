@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  entity="VirtualProductFlavour_Ext"
+  desc="Flavours of the virtual product"
+  table="virtualproductflavour_ext"
+  type="retireable">
+  <column
+    default="false"
+    desc="Identify the default flavour to use"
+    name="DefaultFlavour"
+    nullok="false"
+    type="bit"/>
+  <foreignkey
+    desc="Scheme that is assigned to the virtual product"
+    fkentity="Scheme_Ext"
+    name="Scheme"
+    nullok="true"/>
+  <column
+    desc="Name of the virtual product"
+    name="Name"
+    nullok="false"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="255"/>
+    <localization
+      nullok="true"
+      tableName="virtualproductflavloc_ext"/>
+  </column>
+  <column
+    desc="Code identifying the virtual product"
+    name="Code"
+    nullok="false"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="30"/>
+  </column>
+  <implementsEntity
+    name="SimpleEffDated"/>
+  <foreignkey
+    fkentity="VirtualProduct_Ext"
+    name="VirtualProduct"
+    nullok="false"/>
+</entity>

@@ -1,0 +1,16 @@
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleGenericDateDelegate_Ext">
+
+	<column name="DateValue1" type="datetime" nullok="true"/>
+	<column name="DateValue2" type="datetime" nullok="true"/>
+	<column name="DateValue3" type="datetime" nullok="true"/>
+	<column name="DateValue4" type="datetime" nullok="true"/>
+	<column name="DateValue5" type="datetime" nullok="true"/>
+	<column name="DateValue6" type="datetime" nullok="true"/>
+	<column name="DateValue7" type="datetime" nullok="true"/>
+	<column name="DateValue8" type="datetime" nullok="true"/>
+	<column name="DateValue9" type="datetime" nullok="true"/>
+	<column name="DateValue10" type="datetime" nullok="true"/>
+
+</delegate>

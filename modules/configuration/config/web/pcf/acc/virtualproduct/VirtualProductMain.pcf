@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Page
+    canEdit="false"
+    canVisit="true"
+    id="VirtualProductMain"
+    title="&quot;Virtual Products&quot;">
+    <Variable
+      initialValue="new acc.pc.virtualproduct.pageprocess.VirtualProductMainPageProcess()"
+      name="pageProcess"
+      recalculateOnRefresh="true"
+      type="acc.pc.virtualproduct.pageprocess.VirtualProductMainPageProcess"/>
+    <Screen>
+      <PanelRef>
+        <Toolbar>
+          <ToolbarButton
+            action="VirtualProductDetail.go()"
+            id="addButton"
+            label="&quot;Add&quot;"/>
+        </Toolbar>
+        <ListViewPanel>
+          <RowIterator
+            checkBoxVisible="true"
+            editable="false"
+            elementName="virtualProcuctRow"
+            hasCheckBoxes="true"
+            id="virtualProductRowInterator"
+            value="pageProcess.extractVirtualProducts()"
+            valueType="gw.api.database.IQueryBeanResult&lt;VirtualProduct_Ext&gt;">
+            <Row>
+              <TextCell
+                action="VirtualProductDetail.go(virtualProcuctRow)"
+                id="virtualProductCodeCell"
+                label="&quot;Code&quot;"
+                value="virtualProcuctRow.Code"/>
+              <TextCell
+                action="VirtualProductDetail.go(virtualProcuctRow)"
+                id="virtualProductNameCell"
+                label="&quot;Name&quot;"
+                value="virtualProcuctRow.Name"/>
+              <TypeKeyCell
+                id="typecell"
+                label="&quot;Type&quot;"
+                value="virtualProcuctRow.VirtualProductType"
+                valueType="VirtualProductType_Ext"/>
+              <DateCell
+                dateFormat="short"
+                id="effectiveDate"
+                label="&quot;Effective Date&quot;"
+                value="virtualProcuctRow.EffectiveDate"/>
+              <DateCell
+                dateFormat="short"
+                id="expirationDate"
+                label="&quot;Expiration Date&quot;"
+                value="virtualProcuctRow.ExpirationDate"/>
+              <TextCell
+                id="product"
+                label="&quot;Product&quot;"
+                value="gw.api.productmodel.ProductLookup.getByPublicID(virtualProcuctRow.ProductCode).Name"/>
+            </Row>
+          </RowIterator>
+        </ListViewPanel>
+      </PanelRef>
+    </Screen>
+  </Page>
+</PCF>

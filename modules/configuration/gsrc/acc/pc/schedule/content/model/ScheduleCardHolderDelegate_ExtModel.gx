@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<gx-model type="entity.ScheduleCardHolderDelegate_Ext" xmlns="http://guidewire.com/gx" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <includes>
+    <include
+      path="CardHolderFirstName"
+      type="java.lang.String"
+      xmlType="xs:string"
+      propertyInclusionType="NORMAL"/>
+    <include
+      path="CardHolderFullName"
+      type="java.lang.String"
+      xmlType="xs:string"
+      propertyInclusionType="NORMAL"/>
+    <include
+      path="CardHolderIDNumber"
+      type="java.lang.String"
+      xmlType="xs:string"
+      propertyInclusionType="NORMAL"/>
+    <include
+      path="CardHolderLastName"
+      type="java.lang.String"
+      xmlType="xs:string"
+      propertyInclusionType="NORMAL"/>
+  </includes>
+</gx-model>

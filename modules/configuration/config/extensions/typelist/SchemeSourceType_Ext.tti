@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="SchemeSourceType"
+  name="SchemeSourceType_Ext">
+  <typecode
+    code="coverage"
+    desc="Coverage"
+    name="Coverage"/>
+  <typecode
+    code="underwritingissue"
+    desc="Underwriting Issue"
+    name="Underwriting Issue"/>
+  <typecode
+    code="exclusion"
+    desc="Exclusion"
+    name="Exclusion"/>
+  <typecode
+    code="modifier"
+    desc="Modifier"
+    name="Modifer"/>
+  <typecode
+    code="condition"
+    desc="Condition"
+    name="Condition"/>
+  <typecode
+    code="coverageterm"
+    desc="Coverage Term"
+    name="Coverage Term"/>
+  <typecode
+    code="attribute"
+    desc="Attribute"
+    name="Attribute"/>
+  <typecode
+    code="validationcontext"
+    desc="Validation Context"
+    name="Validation Context"/>
+  <typecode
+    code="coveroption"
+    desc="Cover Option"
+    name="Cover Option"/>
+  <typecode
+    code="ratecostcategory"
+    desc="Cost Category"
+    name="Cost Category"/>
+  <typecode
+    code="ratecoverage"
+    desc="Coverage"
+    name="Coverage"/>
+  <typecode
+    code="exclusionterm"
+    desc="Exclusion Term"
+    name="Exclusion Term"/>
+  <typecode
+    code="conditionterm"
+    desc="Condition Term"
+    name="Condition Term"/>
+  <typecode
+    code="Eligibility"
+    desc="Eligibility"
+    name="Eligibility"/>
+  <typecode
+    code="pcf"
+    desc="PCF"
+    name="PCF"/>
+</typelist>

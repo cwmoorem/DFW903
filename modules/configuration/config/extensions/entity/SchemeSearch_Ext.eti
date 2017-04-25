@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc="Details about the scheme"
+  entity="SchemeSearch_Ext"
+  exportable="true"
+  table="schemesearch_ext"
+  type="retireable">
+
+  <foreignkey
+    fkentity="SchemeSearchLink_Ext"
+    name="SchemeSearchLink"
+    nullok="false"/>
+
+  <foreignkey
+    fkentity="SchemeSearchKey_Ext"
+    name="SerachKey"
+    nullok="false"/>
+
+  <column
+    desc="Value Part"
+    name="Value"
+    nullok="true"
+    type="varchar">
+    <columnParam name="size" value="255"/>
+  </column>
+
+</entity>

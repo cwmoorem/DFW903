@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <InputSet
+    id="PaymentsSummaryInputSet">
+    <Require
+      name="policyPeriodBillingInstructionsManager"
+      type="gw.billing.PolicyPeriodBillingInstructionsManager"/>
+    <Require
+      name="thePeriod"
+      type="PolicyPeriod"/>
+    <Variable
+      initialValue="new gw.web.policy.InstallmentPlanDataRenderHelper(thePeriod.AllCosts.TaxSurcharges.AmountSum(thePeriod.PreferredSettlementCurrency), thePeriod.TotalPremiumRPT)"
+      name="renderHelper"
+      type="gw.web.policy.InstallmentPlanDataRenderHelper"/>
+    <Label
+      label="DisplayKey.get('Web.BindSummaryDV.Payments')"/>
+    <TextInput
+      id="Frequency"
+      label="DisplayKey.get('Web.Quote.PremiumSummary.Frequency')"
+      value="renderHelper.renderInstallmentFrequency(policyPeriodBillingInstructionsManager.InstallmentPlan)"/>
+    <ContentInput
+      label="DisplayKey.get('Web.Quote.PremiumSummary.DownPayment')">
+      <Link
+        id="DownPayment"
+        label="renderHelper.renderDownPayment(policyPeriodBillingInstructionsManager.InstallmentPlan)"
+        tooltip="renderHelper.renderDownPaymentDetail(policyPeriodBillingInstructionsManager.InstallmentPlan)"/>
+      <Link
+        icon="&quot;info.png&quot;"
+        id="DownPaymentPreviewIcon"
+        tooltip="renderHelper.renderDownPaymentDetail(policyPeriodBillingInstructionsManager.InstallmentPlan)"
+        visible="policyPeriodBillingInstructionsManager.InstallmentPlan != null and policyPeriodBillingInstructionsManager.InstallmentPlan.DownPayment != null and policyPeriodBillingInstructionsManager.InstallmentPlan.DownPayment.IsNotZero and renderHelper.HasTax"/>
+    </ContentInput>
+    <ContentInput
+      id="InstallmentsContentInput"
+      label="DisplayKey.get('Web.Quote.PremiumSummary.Installments', renderHelper.renderNumberOfInstallments(policyPeriodBillingInstructionsManager.InstallmentPlan))">
+      <Link
+        id="Installments"
+        label="renderHelper.renderInstallment(policyPeriodBillingInstructionsManager.InstallmentPlan)"
+        tooltip="renderHelper.renderInstallmentDetail(policyPeriodBillingInstructionsManager.InstallmentPlan)"/>
+      <Link
+        icon="&quot;info.png&quot;"
+        id="InstallmentPreviewIcon"
+        tooltip="renderHelper.renderInstallmentDetail(policyPeriodBillingInstructionsManager.InstallmentPlan)"
+        visible="policyPeriodBillingInstructionsManager.InstallmentPlan != null and policyPeriodBillingInstructionsManager.InstallmentPlan.Installment != null and policyPeriodBillingInstructionsManager.InstallmentPlan.Installment.IsNotZero and policyPeriodBillingInstructionsManager.InstallmentPlan.Fee != null and policyPeriodBillingInstructionsManager.InstallmentPlan.Fee.IsNotZero"/>
+    </ContentInput>
+  </InputSet>
+</PCF>

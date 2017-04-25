@@ -1,0 +1,12 @@
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleIdentityDelegate_Ext">
+
+	<column name="IdentityString" type="shorttext" nullok="true"/>
+	<column name="IdentityInteger" type="integer" nullok="true"/>
+	<column name="IdentityDecimal" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+</delegate>

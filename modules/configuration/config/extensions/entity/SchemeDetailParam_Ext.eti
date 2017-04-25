@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc="Scheme Detail Param"
+  entity="SchemeDetailParam_Ext"
+  exportable="true"
+  table="schemedetailparam_ext"
+  type="retireable">
+
+  <implementsEntity name="SchemeValueDelegate_Ext"/> 
+
+  <foreignkey
+    fkentity="SchemeConditionParam_Ext"
+    name="SchemeConditionParam"
+    nullok="false"/>
+
+  <foreignkey
+    fkentity="SchemeDetail_Ext"
+    name="SchemeDetail"
+    nullok="false"/>
+  
+</entity>

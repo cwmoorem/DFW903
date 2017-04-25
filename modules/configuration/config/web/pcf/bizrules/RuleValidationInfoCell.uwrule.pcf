@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <ModalCell
+    id="RuleValidationInfoCell"
+    mode="uwrule">
+    <Require
+      name="rule"
+      type="Rule"/>
+    <FormatCell
+      align="center"
+      id="ValidityIcons">
+      <ContentInput
+        align="center"
+        visible="rule != null">
+        <Link
+          icon="&quot;alert.png&quot;"
+          id="Invalid"
+          tooltip="DisplayKey.get('BizRules.ValidateAll.InvalidIcon')"
+          visible="rule.Valid == Boolean.FALSE and not (rule as UWRule).ExternallyManaged"/>
+        <Link
+          icon="&quot;ext_managed_uw_rule.png&quot;"
+          id="ExternallyManaged"
+          tooltip="DisplayKey.get('Web.BizRules.UWRules.RuleIsNotManagedByBusinessRulesFrameworkIcon')"
+          visible="(rule as UWRule).ExternallyManaged"/>
+        <Link
+          icon="&quot;ellipses-color.png&quot;"
+          id="Unknown"
+          tooltip="DisplayKey.get('BizRules.ValidateAll.UnknownIcon')"
+          visible="rule.Valid == null and not (rule as UWRule).ExternallyManaged"/>
+      </ContentInput>
+    </FormatCell>
+  </ModalCell>
+</PCF>

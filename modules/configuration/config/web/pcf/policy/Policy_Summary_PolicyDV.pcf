@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <DetailViewPanel
+    id="Policy_Summary_PolicyDV">
+    <Require
+      name="policy"
+      type="Policy"/>
+    <Require
+      name="policyPeriod"
+      type="PolicyPeriod"/>
+    <Require
+      name="asOfDate"
+      type="java.util.Date"/>
+    <Variable
+      initialValue="gw.util.concurrent.LocklessLazyVar.make(\ -&gt; policyPeriod.OpenForEdit)"
+      name="openForEditInit"
+      recalculateOnRefresh="true"
+      type="gw.util.concurrent.LocklessLazyVar&lt;java.lang.Boolean&gt;"/>
+    <InputColumn>
+      <Label
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Policy&quot;)"/>
+      <TextInput
+        id="Product"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Product&quot;)"
+        value="policy.Product"
+        valueType="gw.api.productmodel.Product"/>
+      <TextInput
+        id="Offering"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Policy.Offering&quot;)"
+        value="policyPeriod.Offering"
+        valueType="gw.api.productmodel.Offering"
+        visible="policy.Product.Offerings.Count &gt; 0"/>
+      <TextInput
+        id="PolicyNumber"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Policy.PolicyNumber&quot;)"
+        value="policyPeriod.PolicyNumberDisplayString"/>
+      <BooleanRadioInput
+        id="Issued"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Issued&quot;)"
+        value="policyPeriod.Policy.IssueDate != null"/>
+      <DateInput
+        id="IssueDate"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.IssueDate&quot;)"
+        value="policyPeriod.Policy.IssueDate"
+        visible="policyPeriod.Policy.IssueDate != null"/>
+      <AltUserInput
+        id="Underwriter"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Underwriter&quot;)"
+        value="policyPeriod.Policy.getUserRoleAssignmentByRole(typekey.UserRole.TC_UNDERWRITER).AssignedUser"/>
+      <TextInput
+        action="if (perm.Account.view(policyPeriod.Policy.MovedPolicySourceAccount)) {AccountFileForward.go(policyPeriod.Policy.MovedPolicySourceAccount)}"
+        available="not policyPeriod.Policy.MovedPolicySourceAccount.Retired"
+        id="SourceAccount"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.SourceAccount&quot;)"
+        value="policyPeriod.Policy.MovedPolicySourceAccount.AccountNumber"
+        visible="policyPeriod.Policy.MovedPolicySourceAccount != null"/>
+      <TextInput
+        action="if (perm.PolicyPeriod.view(policyPeriod.Policy.RewrittenToNewAccountSource.Periods.first())) {pcf.PolicyFileForward.go(policyPeriod.Policy.RewrittenToNewAccountSource.Periods.first().PolicyNumber)}"
+        id="RewrittenSourcePolicy"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.RewrittenSourcePolicy&quot;)"
+        value="DisplayKey.get(&quot;Web.PolicyFile.Summary.PolicyNumOnAccount&quot;, policyPeriod.Policy.RewrittenToNewAccountSource.Periods.first().PolicyNumberDisplayString, policyPeriod.Policy.RewrittenToNewAccountSource.Account.AccountNumber)"
+        visible="policyPeriod.Policy.RewrittenToNewAccountSource != null"/>
+      <TextInput
+        action="if (perm.PolicyPeriod.view(policyPeriod.Policy.RewrittenToNewAccountDestination.Periods.first())) {pcf.PolicyFileForward.go(policyPeriod.Policy.RewrittenToNewAccountDestination.Periods.first().PolicyNumber)}"
+        id="RewrittenTargetPolicy"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.RewrittenTargetPolicy&quot;)"
+        value="DisplayKey.get(&quot;Web.PolicyFile.Summary.PolicyNumOnAccount&quot;, policyPeriod.Policy.RewrittenToNewAccountDestination.Periods.first().PolicyNumberDisplayString, policyPeriod.Policy.RewrittenToNewAccountDestination.Account.AccountNumber)"
+        visible="policyPeriod.Policy.RewrittenToNewAccountDestination.BoundPeriods.HasElements"/>
+      <TextInput
+        action="pcf.PolicyFileForward.go(policyPeriod.Policy.DividedSourcePolicy.LatestBoundPeriod.PolicyNumber)"
+        id="splitSourcePolicy"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.DividedSourcePolicy&quot;)"
+        value="DisplayKey.get(&quot;Web.PolicyFile.Summary.PolicyNumOnAccount&quot;, policyPeriod.Policy.DividedSourcePolicy.LatestBoundPeriod.PolicyNumberDisplayString, policyPeriod.Policy.DividedSourcePolicy.Account.AccountNumber)"
+        visible="policyPeriod.Policy.DividedSourcePolicy != null"/>
+      <Label
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Policy.PreRenewal&quot;)"
+        visible="policyPeriod.PolicyTerm.PreRenewalDirection != null"/>
+      <TypeKeyInput
+        action="PreRenewalDirectionPage.go(policyPeriod, policy, asOfDate)"
+        id="PreRenewalDirection"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.Policy.PreRenewalDirection&quot;)"
+        value="policyPeriod.PolicyTerm.PreRenewalDirection"
+        valueType="typekey.PreRenewalDirection"
+        visible="policyPeriod.PolicyTerm.PreRenewalDirection != null"/>
+      <Label
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.PolicyPrimary&quot;)"/>
+      <TextInput
+        action="EditPolicyContactRolePopup.push(policyPeriod.PrimaryNamedInsured, openForEditInit.get())"
+        id="Name"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.PolicyPrimary.Name&quot;)"
+        value="policyPeriod.PrimaryNamedInsured"
+        valueType="entity.PolicyPriNamedInsured"
+        visible="not policyPeriod.Archived"/>
+      <TextInput
+        id="NameWhenArchived"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.PolicyPrimary.Name&quot;)"
+        value="policyPeriod.PrimaryInsuredName"
+        visible="policyPeriod.Archived"/>
+      <InputSetRef
+        def="PolicyAddressDisplayInputSet(policyPeriod, true)"
+        id="PolicyAddress"
+        visible="not policyPeriod.Archived"/>
+    </InputColumn>
+    <Code><![CDATA[function shouldDisplayRewritePolicyLink() : boolean {
+  var rewrite = policyPeriod.Policy.RewrittenToNewAccountDestination
+  return  rewrite.BoundPeriods.HasElements
+}]]></Code>
+  </DetailViewPanel>
+</PCF>

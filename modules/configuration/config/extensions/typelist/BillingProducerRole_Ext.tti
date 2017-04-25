@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="BillingProducerRole"
+  name="BillingProducerRole_Ext">
+  <typecode
+    code="creator"
+    desc="Creator"
+    name="Creator"
+    priority="1"/>
+  <typecode
+    code="binder"
+    desc="Binder"
+    name="Binder"
+    priority="2"/>
+  <typecode
+    code="leader"
+    desc="Leader"
+    name="Leader"
+    priority="3"/>
+  <typecode
+    code="additional_binder"
+    desc="Additional Binder"
+    name="Additional Binder"
+    priority="4"/>
+  <typecode
+    code="supplier"
+    desc="Supplier"
+    name="Supplier"
+    priority="5"/>
+  <typecode
+    code="additional"
+    desc="Additional"
+    name="Additional"
+    priority="6"/>
+</typelist>

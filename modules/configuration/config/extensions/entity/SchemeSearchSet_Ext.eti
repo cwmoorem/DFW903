@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc="Scheme Search Set"
+  entity="SchemeSearchSet_Ext"
+  exportable="true"
+  table="schemesearchset_ext"
+  type="retireable">
+
+  <column
+    desc="Code Reference to the scheme search set"
+    name="Code"
+    nullok="false"
+    type="varchar">
+    <columnParam name="size" value="30"/>
+  </column>
+
+  <column
+    desc="Name of the scheme search set"
+    name="Name"
+    nullok="false"
+    type="varchar">
+    <columnParam name="size" value="255"/>
+  </column>
+
+  <column
+    name="Description"
+    type="longtext"
+    nullok="true"
+    desc="A Detailed description of the scheme"/>
+
+  <array
+    arrayentity="SchemeSearchSetItem_Ext"
+    name="SchemeSearchSetItems"
+    desc="Detail information about the scheme search items"/>
+
+</entity>

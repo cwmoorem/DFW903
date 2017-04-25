@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc="Details about the scheme"
+  entity="SchemeSearchKey_Ext"
+  exportable="true"
+  table="schemesearchkey_ext"
+  type="retireable">
+  <column
+    desc="Key to be used in scheme searches"
+    name="SearchKey"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="255"/>
+  </column>
+  <column
+    desc="Root Entity"
+    name="RootEntity"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="30"/>
+  </column>
+  <column
+    desc="XPath excluding Root entity to the attribute"
+    name="XPath"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="255"/>
+  </column>
+  <index
+    desc="Unique constraint on Key."
+    name="SchmSrchKUIdx"
+    unique="true">
+    <indexcol
+      keyposition="1"
+      name="SearchKey"/>
+    <indexcol
+      keyposition="2"
+      name="Retired"/>
+  </index>
+</entity>

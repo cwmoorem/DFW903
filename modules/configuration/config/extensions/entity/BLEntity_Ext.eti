@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  entity="BLEntity_Ext"
+  desc="Business Language Entity definition"
+  table="blentity_ext"
+  type="retireable">
+  <typekey
+    desc="Type of the business languae entity"
+    name="BLEntityType"
+    nullok="false"
+    typelist="BLEntityType_Ext"/>
+  <column
+    desc="Name of the Business Language Entity"
+    name="EntityName"
+    nullok="false"
+    type="shorttext">
+    <localization
+      nullok="true"
+      tableName="BLEntityNameI10n_Ext"/>
+  </column>
+  <column
+    desc="Path or code for the entity"
+    name="EntityPath"
+    nullok="true"
+    type="longtext"/>
+</entity>

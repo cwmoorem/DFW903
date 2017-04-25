@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Page
+    canEdit="true"
+    canVisit="true"
+    countsAsWork="false"
+    id="SchemeCondition"
+    parent="SchemeLocationGroup()"
+    title="&quot;Condition Management&quot;">
+    <LocationEntryPoint
+      signature="SchemeCondition()"/>
+    <Variable
+      initialValue="new acc.pc.scheme.pageprocess.SchemeConditionPageProcess()"
+      name="pageProcess"
+      recalculateOnRefresh="true"
+      type="acc.pc.scheme.pageprocess.SchemeConditionPageProcess"/>
+    <Screen>
+      <Toolbar>
+        <ToolbarButton
+          action="pcf.SchemeConditionDetail.push()"
+          id="ToolbarButton"
+          label="&quot;Add Condition&quot;"/>
+        <CheckedValuesToolbarButton
+          checkedRowAction="pageProcess.removeSchemeCondition(schemeConditionMain)"
+          id="removeButton"
+          iterator="schemeConditionMainIterator"
+          label="&quot;Remove Condition&quot;"/>
+      </Toolbar>
+      <ListViewPanel>
+        <RowIterator
+          canPick="false"
+          checkBoxVisible="true"
+          editable="false"
+          elementName="schemeConditionMain"
+          hasCheckBoxes="true"
+          id="schemeConditionMainIterator"
+          pageSize="0"
+          value="pageProcess.schemeConditions"
+          valueType="java.util.List&lt;entity.SchemeCondition_Ext&gt;">
+          <Row>
+            <TextCell
+              action="pcf.SchemeConditionDetail.push(schemeConditionMain)"
+              id="schemeConditionNameCell"
+              label="&quot;Name&quot;"
+              value="schemeConditionMain.Name"/>
+          </Row>
+        </RowIterator>
+      </ListViewPanel>
+    </Screen>
+  </Page>
+</PCF>

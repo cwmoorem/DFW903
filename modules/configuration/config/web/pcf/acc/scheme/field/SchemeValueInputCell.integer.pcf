@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../../pcf.xsd">
+  <ModalCell
+    id="SchemeValueInputCell"
+    mode="integer">
+    <Require
+      name="value"
+      type="SchemeValueDelegate_Ext"/>
+    <TextCell
+      editable="true"
+      id="dateinputcell"
+      value="value.IntegerValue"
+      valueType="java.lang.Integer"/>
+  </ModalCell>
+</PCF>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<typelist xmlns="http://guidewire.com/typelists" name="SchemeType_Ext" desc="">
+  <typecode
+    code="private"
+    desc="Private Scheme"
+    name="Private"/>
+  <typecode
+    code="public"
+    desc="Public Scheme"
+    name="Public"/>
+  <typecode
+    code="affinity"
+    desc="Scheme for Affinities"
+    name="Affinity"/>
+</typelist>

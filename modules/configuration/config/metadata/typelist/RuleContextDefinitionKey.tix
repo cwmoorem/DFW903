@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<internaltypelistextension
+  xmlns="http://guidewire.com/typelists"
+  desc="Key to a RuleContextDefinition"
+  name="RuleContextDefinitionKey">
+  <typecode
+    code="GenericPolicy"
+    name="Generic Policy"
+    desc="Generic rule context for a policy."/>
+  <typecode
+    code="PAPolicy"
+    name="Personal Auto Policy"
+    desc="Specific rule context for Personal Auto Line."/>
+  <typecode
+    code="PAPolicyVehicleIterative"
+    name="Personal Auto Policy - For Each Vehicle"
+    desc="Personal Auto Line context, executed for each vehicle."/>
+  <typecode
+    code="PAPolicyDriverIterative"
+    name="Personal Auto Policy - For Each Driver"
+    desc="Personal Auto Line context, executed for each driver."/>
+  <typecode
+    code="CPPolicy"
+    name="Commercial Property Policy"
+    desc="Specific rule context for Commercial Property Line."/>
+  <typecode
+    code="CPPolicyLocationIterative"
+    name="Commercial Property Policy - For Each Location"
+    desc="Commercial Property Line context, executed for each location."/>
+  <typecode
+    code="CPPolicyBuildingIterative"
+    name="Commercial Property Policy - For Each Building"
+    desc="Commercial Property Line context, executed for each building."/>
+  <typecode
+    code="BAPolicy"
+    name="Commercial Auto Policy"
+    desc="Specific rule context for Commercial Auto Line."/>
+  <typecode
+    code="BAPolicyVehicleIterative"
+    name="Commercial Auto Policy - For Each Vehicle"
+    desc="Commercial Auto Line context, executed for each vehicle."/>
+  <typecode
+    code="BAPolicyDriverIterative"
+    name="Commercial Auto Policy - For Each Driver"
+    desc="Commercial Auto Line context, executed for each driver."/>
+  <typecode
+    code="WCPolicy"
+    name="Workers' Comp Policy"
+    desc="Specific rule context for Workers' Comp Line."/>
+  <typecode
+    code="WCPolicyCoveredEmployeeIterative"
+    name="Workers' Comp Policy - For Each WCCoveredEmployee"
+    desc="Workers' Comp Line context, executed for each WCCoveredEmployee."/>
+  <typecode
+    code="GLPolicy"
+    name="General Liability Policy"
+    desc="Specific rule context for General Liability Line."/>
+  <typecode
+    code="GLPolicyExposureIterative"
+    name="General Liability Policy - For Each Exposure"
+    desc="General Liability Line context, executed for each exposure."/>
+  <typecode
+    code="IMPolicy"
+    name="Inland Marine Policy"
+    desc="Specific rule context for Inland Marine Line."/>
+  <typecode
+    code="IMPolicyLocationIterative"
+    name="Inland Marine Policy - For Each Location"
+    desc="Inland Marine Line context, executed for each location."/>
+  <typecode
+    code="IMPolicyBuildingIterative"
+    name="Inland Marine Policy - For Each Building"
+    desc="Inland Marine Line context, executed for each building."/>
+  <typecode
+    code="IMPolicyAccountsReceivableIterative"
+    name="Inland Marine Policy - For Each AccountsReceivable"
+    desc="Inland Marine Line context, executed for each AccountsReceivable."/>
+  <typecode
+    code="IMPolicyIMSignIterative"
+    name="Inland Marine Policy - For Each IMSign"
+    desc="Inland Marine Line context, executed for each IMSign."/>
+  <typecode
+    code="IMPolicyContractorsEquipmentIterative"
+    name="Inland Marine Policy - For Each ContractorsEquipment"
+    desc="Inland Marine Line context, executed for each ContractorsEquipment."/>
+  <typecode
+    code="BOPPolicy"
+    name="Business Owners Policy"
+    desc="Specific rule context for Business Owners Line."/>
+  <typecode
+    code="BOPPolicyLocationIterative"
+    name="Business Owners Policy - For Each Location"
+    desc="Business Owners Line context, executed for each location."/>
+  <typecode
+    code="BOPPolicyBuildingIterative"
+    name="Business Owners Policy - For Each Building"
+    desc="Business Owners Line context, executed for each building."/>
+</internaltypelistextension>

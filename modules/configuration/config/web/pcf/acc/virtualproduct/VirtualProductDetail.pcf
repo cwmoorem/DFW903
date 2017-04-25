@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Page
+    afterCancel="VirtualProductMain.go()"
+    afterCommit="VirtualProductMain.go()"
+    canEdit="true"
+    id="VirtualProductDetail"
+    parent="VirtualProductMain()"
+    startInEditMode="true"
+    title="&quot;Virtual Product&quot;">
+    <LocationEntryPoint
+      signature="VirtualProductDetail()"/>
+    <LocationEntryPoint
+      signature="VirtualProductDetail(inVirtualProduct : VirtualProduct_Ext)"/>
+    <Variable
+      name="inVirtualProduct"
+      type="VirtualProduct_Ext"/>
+    <Variable
+      initialValue="new acc.pc.virtualproduct.pageprocess.VirtualProductDetailPageProcess(inVirtualProduct)"
+      name="pageProcess"
+      type="acc.pc.virtualproduct.pageprocess.VirtualProductDetailPageProcess"/>
+    <Screen>
+      <Toolbar>
+        <EditButtons
+          cancelVisible="true"
+          editVisible="true"
+          updateVisible="true"/>
+        <ToolbarButton
+          action="pageProcess.removeProduct(pageProcess.virtualProduct)"
+          id="deleteButton"
+          label="&quot;Remove&quot;"/>
+      </Toolbar>
+      <PanelRow>
+        <PanelColumn>
+          <DetailViewPanel>
+            <InputColumn>
+              <TextInput
+                editable="true"
+                id="virtualProductCodeDetail"
+                label="&quot;Code&quot;"
+                required="true"
+                value="pageProcess.virtualProduct.Code"/>
+              <TextInput
+                editable="true"
+                id="virtualProductNameDetail"
+                label="&quot;Name&quot;"
+                required="true"
+                value="pageProcess.virtualProduct.Name"/>
+              <TypeKeyInput
+                editable="true"
+                id="virtualProductTypeDetail"
+                label="&quot;Type&quot;"
+                required="true"
+                value="pageProcess.virtualProduct.VirtualProductType"
+                valueType="VirtualProductType_Ext">
+                <PostOnChange/>
+              </TypeKeyInput>
+              <OrgInput
+                editable="true"
+                id="virtualProductOrganizationDetail"
+                label="&quot;Organisation&quot;"
+                pickLocation="OrganizationSearchPopup.push(null, true)"
+                required="pageProcess.virtualProduct.VirtualProductType == VirtualProductType_Ext.TC_CLOSED"
+                value="pageProcess.virtualProduct.Organization"/>
+              <DateInput
+                dateFormat="short"
+                editable="true"
+                id="virtualProductStartDateDetail"
+                label="&quot;Start Date&quot;"
+                required="true"
+                value="pageProcess.virtualProduct.EffectiveDate"/>
+              <DateInput
+                dateFormat="short"
+                editable="true"
+                id="virtualProductEndDateDetail"
+                label="&quot;End Date&quot;"
+                required="false"
+                value="pageProcess.virtualProduct.ExpirationDate"/>
+              <RangeInput
+                editable="true"
+                id="ProductCode"
+                label="&quot;Product&quot;"
+                required="true"
+                value="pageProcess.virtualProduct.virtualProductProduct"
+                valueRange="pageProcess.availableProducts()"
+                valueType="gw.api.productmodel.Product">
+                <PostOnChange
+                  onChange="pageProcess.changeProduct()"/>
+              </RangeInput>
+              <BooleanRadioInput
+                editable="true"
+                id="virtualProductAffinityDetail"
+                label="&quot;Allow Affinity&quot;"
+                required="true"
+                value="pageProcess.virtualProduct.AllowAffinity"/>
+              <BooleanRadioInput
+                editable="true"
+                id="virtualProductCampaignDetail"
+                label="&quot;Allow Campaign&quot;"
+                required="true"
+                value="pageProcess.virtualProduct.AllowCampaign"/>
+            </InputColumn>
+          </DetailViewPanel>
+          <PanelRef
+            def="VirtualProductFlavourPanelSet(pageProcess)"
+            editable="true"></PanelRef>
+        </PanelColumn>
+        <PanelColumn>
+          <DetailViewPanel>
+            <InputColumn>
+              <ListViewInput
+                boldLabel="true"
+                label="&quot;Available Lines&quot;">
+                <Toolbar/>
+                <ListViewPanel
+                  available="true"
+                  editable="true"
+                  id="LinesLV"
+                  visible="true">
+                  <RowIterator
+                    editable="pageProcess.virtualProduct.VirtualProductLines.Count &gt; 1"
+                    elementName="virtualLine"
+                    value="pageProcess.virtualProduct.VirtualProductLines"
+                    valueType="VirtualProductLine_Ext[]">
+                    <Row>
+                      <TextCell
+                        id="LineCodeCell"
+                        label="&quot;Line&quot;"
+                        required="true"
+                        value="gw.api.productmodel.PolicyLinePatternLookup.getByPublicID(virtualLine.LineCode).Name"/>
+                      <CheckBoxCell
+                        editable="true"
+                        id="lineAvailabeCell"
+                        label="&quot;Available&quot;"
+                        value="virtualLine.LineAvailable"/>
+                    </Row>
+                  </RowIterator>
+                </ListViewPanel>
+              </ListViewInput>
+            </InputColumn>
+          </DetailViewPanel>
+          <DetailViewPanel>
+            <InputColumn>
+              <ListViewInput
+                boldLabel="true"
+                def="LocalizedValuesLV(pageProcess.virtualProduct, { &quot;Name&quot;}, {&quot;Name&quot;})"
+                editable="true"
+                id="LocalizedValuesLV"
+                label="DisplayKey.get(&quot;Web.Admin.LocalizedValuesDV.Localization&quot;)"
+                visible="LanguageType.getTypeKeys(false).Count &gt; 1">
+                <Toolbar
+                  visible="false">
+                  <IteratorButtons
+                    iterator="LocalizedValuesLV.LocalizedFields"/>
+                </Toolbar>
+              </ListViewInput>
+            </InputColumn>
+          </DetailViewPanel>
+        </PanelColumn>
+      </PanelRow>
+    </Screen>
+  </Page>
+</PCF>

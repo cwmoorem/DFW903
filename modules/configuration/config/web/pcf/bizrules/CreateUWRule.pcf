@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <Page
+    afterCancel="UWRules.go()"
+    afterCommit="UWRuleDetail.go(head, head.HeadVersion)"
+    canEdit="true"
+    id="CreateUWRule"
+    parent="UWRules()"
+    showUpLink="true"
+    startInEditMode="true"
+    title="ruleToClone == null ? DisplayKey.get(&quot;Web.BizRules.CreateUWRule.Title&quot;) : DisplayKey.get(&quot;Web.BizRules.CreateUWRule.CloneTitle&quot;, ruleToClone.Name)">
+    <LocationEntryPoint
+      signature="CreateUWRule()"/>
+    <LocationEntryPoint
+      signature="CreateUWRule(ruleToClone: UWRule)"/>
+    <Variable
+      name="ruleToClone"
+      type="UWRule"/>
+    <Variable
+      name="head"
+      type="UWRuleHead"
+      initialValue="new gw.web.bizrules.UWRuleFactory().createRuleHead(com.google.common.base.Optional.fromNullable(ruleToClone))"/>
+    <Variable
+      name="versionController"
+      type="gw.bizrules.pcf.RuleVersionController&lt;UWRuleVersion&gt;"
+      initialValue="new gw.bizrules.pcf.RuleVersionController&lt;UWRuleVersion&gt;(gw.bizrules.UWRulesNavigationSupport.Instance)"/>
+    <Variable
+      name="ruleControler"
+      type="gw.bizrules.pcf.RulePageController"
+      initialValue="new gw.bizrules.pcf.RulePageController(head.HeadVersion, gw.web.bizrules.UWRulesPageHelper.UIConfigs, CurrentLocation, gw.web.bizrules.UWRuleDetailsStateHolder.SwitchableModes)"/>
+    <Screen>
+      <Toolbar>
+        <EditButtons updateLabel="DisplayKey.get(&quot;Web.BizRules.CreateUWRule.UpdateLabel&quot;)"/>
+        <ToolbarDivider/>
+        <ToolbarButtonSetRef toolbarButtonSet="ConditionValidationToolbarButtonSet(ruleControler)"/>
+      </Toolbar>
+      <AlertBar
+        action="versionController.pushRulesWithSameNamePopup(head.HeadVersion)"
+        allowDismiss="false"
+        id="DuplicatedNameAlertBar"
+        label="DisplayKey.get('BizRules.RuleDetailsPage.Alert.DuplicatedName')"
+        visible="!versionController.isRuleNameUnique(head.HeadVersion)"/>
+      <PanelRef
+        def="UWRulePanelSet(head.HeadVersion, false, ruleControler)"/>
+    </Screen>
+  </Page>
+</PCF>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="GeneralStatusDelegate_Ext">
+  <typekey
+    default="Draft"
+    name="GeneralStatus"
+    nullok="false"
+    typelist="GeneralStatusType_Ext"/>
+</delegate>

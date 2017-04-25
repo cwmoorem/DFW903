@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc="Details about the scheme"
+  entity="SchemeDetail_Ext"
+  exportable="true"
+  table="schemedetail_ext"
+  type="retireable">
+  <implementsEntity
+    name="SchemeValueDelegate_Ext"/>
+  <implementsInterface
+    iface="acc.pc.scheme.ISchemeDetailAdapter"
+    impl="acc.pc.scheme.SchemeDetailAdapter"/>
+  <foreignkey
+    fkentity="Scheme_Ext"
+    name="Scheme"
+    nullok="false"/>
+  <foreignkey
+    desc="Definition of condition"
+    fkentity="SchemeCondition_Ext"
+    name="SchemeCondition"
+    nullok="true"/>
+  <typekey
+    name="SchemeSourceType"
+    nullok="true"
+    typelist="SchemeSourceType_Ext"/>
+  <typekey
+    name="SchemeValueType"
+    nullok="true"
+    typelist="SchemeValueType_Ext"/>
+  <typekey
+    name="SchemeActionType"
+    nullok="true"
+    typelist="SchemeActionType_Ext"/>
+  <typekey
+    name="SchemeValidationType"
+    nullok="true"
+    typelist="SchemeValidationType_Ext"/>
+  <column
+    desc="Value for the comparator"
+    name="Comparator"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="255"/>
+  </column>
+  <column
+    desc="Code referencing the Parent of the comparator if needed"
+    name="ParentCode"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="255"/>
+  </column>
+  <column
+    desc="Condition that must be true"
+    name="Condition"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="500"/>
+  </column>
+  <column
+    default="false"
+    desc="Indicator as to weather the value for an update can be forced i.e. overwrite any other value that may exists"
+    name="ForceValue"
+    nullok="true"
+    type="bit"/>
+  <array
+    arrayentity="SchemeDetailParam_Ext"
+    name="SchemeDetailParams"/>
+  <array
+    arrayentity="SchemeDetailArrayValue_Ext"
+    name="SchemeDetailArrayValues"/>
+  <typekey
+    name="SchemeOperatorType"
+    nullok="true"
+    typelist="SchemeOperatorType_Ext"/>
+  <typekey
+    desc="Currency"
+    name="Currency"
+    nullok="true"
+    typelist="Currency"/>
+  <typekey
+    name="SchemeCostType"
+    nullok="true"
+    typelist="SchemeCostType_Ext"/>
+  <typekey
+    name="SchemeTimeframe"
+    nullok="true"
+    typelist="SchemeTimeframe_Ext"/>
+  <column
+    desc="Duration of  the timeframe selected"
+    name="TimeDuration"
+    nullok="true"
+    type="integer"/>
+  <column
+    desc="Discount to be applied to the cost"
+    name="CostDiscount"
+    nullok="true"
+    type="percentage"/>
+</entity>

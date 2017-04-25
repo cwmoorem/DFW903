@@ -1,0 +1,16 @@
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleGenericLongDelegate_Ext">
+
+	<column name="LongValue1" type="longint" nullok="true"/>
+	<column name="LongValue2" type="longint" nullok="true"/>
+	<column name="LongValue3" type="longint" nullok="true"/>
+	<column name="LongValue4" type="longint" nullok="true"/>
+	<column name="LongValue5" type="longint" nullok="true"/>
+	<column name="LongValue6" type="longint" nullok="true"/>
+	<column name="LongValue7" type="longint" nullok="true"/>
+	<column name="LongValue8" type="longint" nullok="true"/>
+	<column name="LongValue9" type="longint" nullok="true"/>
+	<column name="LongValue10" type="longint" nullok="true"/>
+
+</delegate>

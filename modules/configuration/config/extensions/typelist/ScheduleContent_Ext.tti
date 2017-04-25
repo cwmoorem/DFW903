@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<typelist
+  xmlns="http://guidewire.com/typelists"
+  desc="ScheduleContent_Ext"
+  name="ScheduleContent_Ext">
+  <typecode
+    code="person"
+    desc="Person"
+    name="Person"/>
+  <typecode
+    code="address"
+    desc="Address"
+    name="Address"/>
+  <typecode
+    code="vehicle"
+    desc="Vehicle"
+    name="Vehicle"/>
+  <typecode
+    code="accountholder"
+    desc="Account Holder"
+    name="Account Holder"/>
+  <typecode
+    code="cardholder"
+    desc="Card Holder"
+    name="Card Holder"/>
+  <typecode
+    code="correspondenceaddress"
+    desc="Correspondence Address"
+    name="Correspondence Address"/>
+  <typecode
+    code="residentialaddress"
+    desc="Residential Address"
+    name="Residential Address"/>
+  <typecode
+    code="externalPolicy"
+    desc="External Policy"
+    name="External Policy"/>
+  <typecode
+    code="shortstring"
+    desc="Generic Short String"
+    name="Generic Short String"/>
+  <typecode
+    code="longstring"
+    desc="Generic Long String"
+    name="Generic Long String"/>
+  <typecode
+    code="date"
+    desc="Generic Date"
+    name="Generic Date"/>
+  <typecode
+    code="decimal"
+    desc="Generic Decimal"
+    name="Generic Decimal"/>
+  <typecode
+    code="integer"
+    desc="Generic Integer"
+    name="Generic Integer"/>
+  <typecode
+    code="money"
+    desc="Generic Money"
+    name="Generic Money"/>
+  <typecode
+    code="premium"
+    desc="Premiums"
+    name="Premiums"/>
+  <typecode
+    code="identity"
+    desc="Identity"
+    name="Identity"/>
+  <typecode
+    code="suminsured"
+    desc="Sum Insured"
+    name="Sum Insured"/>
+</typelist>

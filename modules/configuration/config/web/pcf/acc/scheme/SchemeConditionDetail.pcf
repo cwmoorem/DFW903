@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Page
+    beforeCommit="pageProcess.beforeCommit()"
+    canEdit="true"
+    canVisit="true"
+    countsAsWork="false"
+    id="SchemeConditionDetail"
+    parent="SchemeCondition()"
+    showUpLink="true"
+    startInEditMode="true"
+    title="&quot;Scheme Condition Detail&quot;">
+    <LocationEntryPoint
+      signature="SchemeConditionDetail()"/>
+    <LocationEntryPoint
+      signature="SchemeConditionDetail(schemeCondition : SchemeCondition_Ext)"/>
+    <Variable
+      name="schemeCondition"
+      type="SchemeCondition_Ext"/>
+    <Variable
+      initialValue="new acc.pc.scheme.pageprocess.SchemeConditionDetailPageProcess(schemeCondition, CurrentLocation)"
+      name="pageProcess"
+      type="acc.pc.scheme.pageprocess.SchemeConditionDetailPageProcess"/>
+    <Screen>
+      <Toolbar>
+        <EditButtons
+          cancelVisible="true"
+          editVisible="true"
+          updateVisible="true"/>
+        <ToolbarDivider/>
+        <ToolbarButton
+          action="(pageProcess.schemeCondition as GeneralStatusDelegate_Ext).promote()"
+          available="pageProcess.schemeCondition.GeneralStatus != typekey.GeneralStatusType_Ext.TC_APPROVED &amp;&amp; CurrentLocation.InEditMode"
+          id="ToolbarButton"
+          label="&quot;Promote&quot;"/>
+        <ToolbarButton
+          action="(pageProcess.schemeCondition as GeneralStatusDelegate_Ext).demote()"
+          available="pageProcess.schemeCondition.GeneralStatus == typekey.GeneralStatusType_Ext.TC_TEST &amp;&amp; CurrentLocation.InEditMode"
+          id="demoteButton"
+          label="&quot;Demote&quot;"/>
+      </Toolbar>
+      <DetailViewPanel
+        editable="pageProcess.schemeCondition.GeneralStatus == GeneralStatusType_Ext.TC_DRAFT">
+        <InputColumn>
+          <TextInput
+            editable="true"
+            id="SchemeConditionCode"
+            label="&quot;Code&quot;"
+            required="true"
+            value="pageProcess.schemeCondition.Code"/>
+          <TextInput
+            editable="true"
+            id="SchemeConditionName"
+            label="&quot;Name&quot;"
+            required="true"
+            value="pageProcess.schemeCondition.Name"/>
+          <TypeKeyInput
+            id="status"
+            label="&quot;Status&quot;"
+            required="true"
+            value="pageProcess.schemeCondition.GeneralStatus"
+            valueType="typekey.GeneralStatusType_Ext"/>
+          <RangeInput
+            editable="true"
+            id="SchemeConditionProduct"
+            label="&quot;Product&quot;"
+            value="pageProcess.schemeCondition.schemeProduct"
+            valueRange="pageProcess.availableProducts()"
+            valueType="gw.api.productmodel.Product"/>
+        </InputColumn>
+        <InputColumn>
+          <Label
+            label="&quot;Description&quot;"/>
+          <TextAreaInput
+            editable="true"
+            id="schemeConditionDescription"
+            numCols="100"
+            numRows="7"
+            value="pageProcess.schemeCondition.Description"/>
+        </InputColumn>
+      </DetailViewPanel>
+      <PanelRef>
+        <Toolbar>
+          <ToolbarButton
+            action="pageProcess.isConditionEditable = true"
+            available="!pageProcess.isConditionEditable &amp;&amp; pageProcess.schemeCondition.GeneralStatus == GeneralStatusType_Ext.TC_DRAFT"
+            id="editButton"
+            label="&quot;Edit&quot;"/>
+          <ToolbarButton
+            action="pageProcess.parseCondition()"
+            available="pageProcess.isConditionEditable &amp;&amp; pageProcess.schemeCondition.GeneralStatus == GeneralStatusType_Ext.TC_DRAFT"
+            id="parseButton"
+            label="&quot;Parse&quot;"/>
+        </Toolbar>
+        <DetailViewPanel
+          editable="pageProcess.schemeCondition.GeneralStatus == GeneralStatusType_Ext.TC_DRAFT">
+          <InputColumn>
+            <TextAreaInput
+              editable="pageProcess.isConditionEditable"
+              id="SchemeCondition"
+              label="&quot;Condition&quot;"
+              numCols="180"
+              numRows="10"
+              required="true"
+              value="pageProcess.schemeCondition.Condition"/>
+          </InputColumn>
+        </DetailViewPanel>
+      </PanelRef>
+      <PanelRef
+        available="!pageProcess.isConditionEditable &amp;&amp; pageProcess.schemeCondition.GeneralStatus == GeneralStatusType_Ext.TC_DRAFT">
+        <Toolbar/>
+        <ListViewPanel>
+          <RowIterator
+            editable="true"
+            elementName="conditionParam"
+            id="conditionParamIterator"
+            value="pageProcess.schemeCondition.SchemeConditionParams"
+            valueType="entity.SchemeConditionParam_Ext[]">
+            <Row>
+              <TextCell
+                id="ParamCode"
+                label="&quot;Code&quot;"
+                value="conditionParam.Parameter"/>
+              <TypeKeyCell
+                editable="true"
+                id="paramValueType"
+                label="&quot;Type&quot;"
+                value="conditionParam.ParamValueType"
+                valueType="typekey.SchemeValueType_Ext">
+                <PostOnChange/>
+              </TypeKeyCell>
+              <TextCell
+                editable="true"
+                id="ParamName"
+                label="&quot;Name&quot;"
+                value="conditionParam.Name">
+                <PostOnChange/>
+              </TextCell>
+            </Row>
+          </RowIterator>
+        </ListViewPanel>
+      </PanelRef>
+      <DetailViewPanel>
+        <InputColumn>
+          <RangeInput
+            editable="true"
+            id="SchemeConditionRoot"
+            label="&quot;Root Entity&quot;"
+            required="true"
+            value="pageProcess.schemeCondition.Root"
+            valueRange="pageProcess.tableWrappers*.EntityName"
+            valueType="java.lang.String"/>
+        </InputColumn>
+      </DetailViewPanel>
+    </Screen>
+  </Page>
+</PCF>

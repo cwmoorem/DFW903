@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Popup
+    autosaveable="false"
+    canEdit="true"
+    countsAsWork="false"
+    id="SchemeExportPopup"
+    startInEditMode="true"
+    title="&quot;Scheme Export&quot;"
+    validateOnBundleCommit="false">
+    <LocationEntryPoint
+      signature="SchemeExportPopup(schemesExported: Scheme_Ext[])"/>
+    <Variable
+      name="schemesExported"
+      type="Scheme_Ext[]"/>
+    <Variable
+      initialValue="new acc.pc.scheme.pageprocess.SchemeExportPopupProcess(schemesExported, CurrentLocation)"
+      name="pageProcess"
+      type="acc.pc.scheme.pageprocess.SchemeExportPopupProcess"/>
+    <Screen>
+      <DetailViewPanel>
+        <InputColumn>
+          <TextInput
+            editable="true"
+            id="exportFolderInput"
+            label="&quot;Export Folder&quot;"
+            value="pageProcess.exportFolder"/>
+        </InputColumn>
+      </DetailViewPanel>
+      <PanelRef>
+        <Toolbar
+          id="toolbar">
+          <ToolbarButton
+            action="pageProcess.export()"
+            id="ExportButton"
+            label="&quot;Export&quot;"/>
+        </Toolbar>
+        <ListViewPanel
+          editable="false">
+          <RowIterator
+            canPick="false"
+            editable="false"
+            elementName="scheme"
+            value="pageProcess.schemesExported"
+            valueType="entity.Scheme_Ext[]">
+            <Row>
+              <TextCell
+                id="codeCell"
+                label="&quot;Code&quot;"
+                value="scheme.Code"/>
+              <TextCell
+                id="nameCell"
+                label="&quot;Name&quot;"
+                value="scheme.Name"/>
+              <TextCell
+                id="productCodeCell"
+                label="&quot;Product&quot;"
+                value="scheme.ProductCode"/>
+            </Row>
+          </RowIterator>
+        </ListViewPanel>
+      </PanelRef>
+    </Screen>
+  </Popup>
+</PCF>

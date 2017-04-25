@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<typelist xmlns="http://guidewire.com/typelists" name="BLEntityType_Ext" desc="The type of entity for the business language">
+  <typecode
+    code="entity"
+    desc="Entity Type"
+    name="Entity"/>
+  <typecode
+    code="command"
+    desc="Command Type"
+    name="Command"/>
+</typelist>

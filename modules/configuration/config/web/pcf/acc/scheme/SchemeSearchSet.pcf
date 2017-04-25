@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Page
+    canEdit="true"
+    canVisit="true"
+    countsAsWork="false"
+    id="SchemeSearchSet"
+    parent="SchemeLocationGroup()"
+    title="&quot;Scheme Search Set Management&quot;">
+    <LocationEntryPoint
+      signature="SchemeSearchSet()"/>
+    <Variable
+      initialValue="new acc.pc.scheme.pageprocess.SchemeSearchSetPageProcess()"
+      name="pageProcess"
+      recalculateOnRefresh="true"
+      type="acc.pc.scheme.pageprocess.SchemeSearchSetPageProcess"/>
+    <Screen>
+      <Toolbar>
+        <ToolbarButton
+          action="pcf.SchemeSearchSetDetail.push()"
+          id="ToolbarButton"
+          label="&quot;Add Scheme Search Set&quot;"/>
+      </Toolbar>
+      <ListViewPanel>
+        <RowIterator
+          canPick="false"
+          checkBoxVisible="true"
+          editable="false"
+          elementName="schemeSearch"
+          hasCheckBoxes="true"
+          id="schemeMainIterator"
+          pageSize="0"
+          value="pageProcess.schemesSets"
+          valueType="java.util.List&lt;entity.SchemeSearchSet_Ext&gt;">
+          <Row>
+            <TextCell
+              action="pcf.SchemeSearchSetDetail.push(schemeSearch)"
+              id="schemeCodeCell"
+              label="&quot;Scheme Search Code&quot;"
+              value="schemeSearch.Code"/>
+            <TextCell
+              id="schemeNameCell"
+              label="&quot;Scheme Search Name&quot;"
+              value="schemeSearch.Name"/>
+          </Row>
+        </RowIterator>
+      </ListViewPanel>
+    </Screen>
+  </Page>
+</PCF>

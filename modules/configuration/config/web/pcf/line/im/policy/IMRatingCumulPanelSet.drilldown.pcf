@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../../pcf.xsd">
+  <PanelSet
+    id="IMRatingCumulPanelSet"
+    mode="drilldown">
+    <Require
+      name="imLine"
+      type="InlandMarineLine"/>
+    <DetailViewPanel>
+      <InputColumn>
+        <Label
+          label="DisplayKey.get(&quot;Web.Policy.IM.CoveragePartSummary&quot;)"/>
+        <ListViewInput
+          labelAbove="true">
+          <Toolbar/>
+          <ListViewPanel>
+            <RowIterator
+              editable="false"
+              elementName="imPartSubtype"
+              value="imLine.VersionList.IMCoverageParts.map( \ part -&gt; part.AllVersions.last() ).toTypedArray()*.Subtype"
+              valueType="typekey.IMCoveragePart[]">
+              <IteratorSort
+                sortBy="imPartSubtype.DisplayName"
+                sortOrder="1"/>
+              <Row>
+                <TextCell
+                  id="partname"
+                  label="DisplayKey.get(&quot;Web.Policy.IM.CoveragePart&quot;)"
+                  value="imPartSubtype.DisplayName"
+                  width="300"
+                  wrap="true"/>
+                <MonetaryAmountCell
+                  action="IMRatingCumulPopup.push( imLine, imPartSubtype )"
+                  formatType="currency"
+                  id="partPremium"
+                  label="DisplayKey.get(&quot;Web.Policy.Quote.Premium&quot;)"
+                  value="imLine.coveragePartPremium( imPartSubtype )"/>
+              </Row>
+            </RowIterator>
+          </ListViewPanel>
+        </ListViewInput>
+      </InputColumn>
+    </DetailViewPanel>
+  </PanelSet>
+</PCF>

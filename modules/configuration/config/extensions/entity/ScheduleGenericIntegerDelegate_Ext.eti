@@ -1,0 +1,16 @@
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleGenericIntegerDelegate_Ext">
+
+	<column name="IntegerValue1" type="integer" nullok="true"/>
+	<column name="IntegerValue2" type="integer" nullok="true"/>
+	<column name="IntegerValue3" type="integer" nullok="true"/>
+	<column name="IntegerValue4" type="integer" nullok="true"/>
+	<column name="IntegerValue5" type="integer" nullok="true"/>
+	<column name="IntegerValue6" type="integer" nullok="true"/>
+	<column name="IntegerValue7" type="integer" nullok="true"/>
+	<column name="IntegerValue8" type="integer" nullok="true"/>
+	<column name="IntegerValue9" type="integer" nullok="true"/>
+	<column name="IntegerValue10" type="integer" nullok="true"/>
+
+</delegate>

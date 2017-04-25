@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleCardHolderDelegate_Ext">
+  <column
+    desc="First name."
+    name="CardHolderFirstName"
+    nullok="true"
+    supportsLinguisticSearch="true"
+    type="firstname"/>
+  <column
+    desc="Last name."
+    name="CardHolderLastName"
+    nullok="true"
+    supportsLinguisticSearch="true"
+    type="lastname"/>
+  <column
+    desc="Full Name First and Last Names."
+    name="CardHolderFullName"
+    nullok="true"
+    supportsLinguisticSearch="true"
+    type="shorttext"/>
+  <column
+    desc="ID Number"
+    name="CardHolderIDNumber"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="11"/>
+  </column>
+</delegate>

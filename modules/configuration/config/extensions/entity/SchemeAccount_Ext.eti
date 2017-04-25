@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  desc="Links the scheme to the account resolving the many to many possibilities"
+  entity="SchemeAccount_Ext"
+  exportable="true"
+  table="schemeaccount_ext"
+  type="retireable">
+
+  <foreignkey
+    fkentity="Scheme_Ext"
+    name="Scheme"
+    nullok="false"/>
+
+  <foreignkey
+    fkentity="Account"
+    name="Account"
+    nullok="false"/>
+
+</entity>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <DetailViewPanel
+    id="Policy_Summary_AssocJobDV"
+    mode="Cancellation">
+    <Require
+      name="policyPeriod"
+      type="PolicyPeriod"/>
+    <Require
+      name="asOfDate"
+      type="java.util.Date"/>
+    <InputColumn>
+      <Label
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.AssocJob&quot;)"/>
+      <DateInput
+        editable="true"
+        id="PeriodEffDate"
+        label="DisplayKey.get(&quot;Web.Job.Policy.Period.EffectiveDate&quot;)"
+        value="policyPeriod.EditEffectiveDate"/>
+      <DateInput
+        id="CreateDate"
+        label="DisplayKey.get(&quot;Web.Job.CreateDate&quot;)"
+        value="policyPeriod.Job.CreateTime"/>
+      <DateInput
+        id="IssueDate"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.AssocJob.CloseDate&quot;)"
+        value="policyPeriod.Job.CloseDate"/>
+      <TextInput
+        id="Type"
+        label="DisplayKey.get(&quot;Web.PolicyFile.Summary.AssocJob.Type&quot;)"
+        value="policyPeriod.Job.DisplayType"/>
+    </InputColumn>
+  </DetailViewPanel>
+</PCF>

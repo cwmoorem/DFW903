@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<extension
+  xmlns="http://guidewire.com/datamodel"
+  entityName="PersonalVehicle">
+  <implementsEntity
+    name="VirtualPriductFlavourDelegate_Ext"/>
+</extension>

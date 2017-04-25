@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../../../pcf.xsd">
+  <InputSet
+    id="BLValueInputInputSet"
+    mode="Integer">
+    <Require
+      name="blInput"
+      type="acc.pc.bl.inputs.BLValueInput_Ext"/>
+    <TextInput
+      editable="true"
+      id="blInputID"
+      label="blInput.Label"
+      value="blInput.IntegerValue"
+      valueType="java.lang.Integer"/>
+  </InputSet>
+</PCF>

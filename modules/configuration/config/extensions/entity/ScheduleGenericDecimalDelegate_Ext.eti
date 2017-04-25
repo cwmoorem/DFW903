@@ -1,0 +1,55 @@
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleGenericDecimalDelegate_Ext">
+
+	<column name="DecimalValue1" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+	<column name="DecimalValue2" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+	<column name="DecimalValue3" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+	<column name="DecimalValue4" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+	<column name="DecimalValue5" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+	<column name="DecimalValue6" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+	<column name="DecimalValue7" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+	<column name="DecimalValue8" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+	<column name="DecimalValue9" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+	<column name="DecimalValue10" type="decimal" nullok="true">
+		<columnParam name="scale" value="4"/>
+		<columnParam name="precision" value="20"/>
+	</column>
+
+</delegate>

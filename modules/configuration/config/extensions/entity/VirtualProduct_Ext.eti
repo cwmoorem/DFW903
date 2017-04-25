@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  entity="VirtualProduct_Ext"
+  desc="Container entity for virtual products"
+  table="virtualproduct_ext"
+  type="retireable">
+  <column
+    desc="Code identifying the virtual product"
+    name="Code"
+    nullok="false"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="30"/>
+  </column>
+  <column
+    desc="Name of the virtual product"
+    name="Name"
+    nullok="false"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="255"/>
+    <localization
+      nullok="true"
+      tableName="virtualproductloc_ext"/>
+  </column>
+  <column
+    desc="Product code of the technical product"
+    name="ProductCode"
+    nullok="false"
+    type="shorttext"/>
+  <column
+    desc="identifying if affinites could be used with this virtual product"
+    name="AllowAffinity"
+    nullok="false"
+    type="bit"/>
+  <column
+    desc="Identifying if campaigns could be used with this virtual product"
+    name="AllowCampaign"
+    nullok="false"
+    type="bit"/>
+  <implementsEntity
+    name="SimpleEffDated"/>
+  <foreignkey
+    desc="Organization if this is a closed virtual product"
+    fkentity="Organization"
+    name="Organization"
+    nullok="true"/>
+  <typekey
+    desc="The type of the virtual product"
+    name="VirtualProductType"
+    nullok="false"
+    typelist="VirtualProductType_Ext"/>
+  <array
+    arrayentity="VirtualProductFlavour_Ext"
+    desc="Flavours of virtual product"
+    name="VirtualProductFlavours"/>
+  <array
+    arrayentity="VirtualProductLine_Ext"
+    desc="Lines available for the virtual product"
+    name="VirtualProductLines"/>
+</entity>

@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../../pcf.xsd">
+  <Page
+    afterCancel="BLMain.go()"
+    afterCommit="BLMain.go()"
+    canEdit="pageProcess.editEnable()"
+    canVisit="true"
+    id="BLEntityDetail_Ext"
+    parent="BLMain()"
+    showUpLink="true"
+    title="&quot;Business Language Detail&quot;">
+    <LocationEntryPoint
+      signature="BLEntityDetail_Ext()"/>
+    <LocationEntryPoint
+      signature="BLEntityDetail_Ext(inBLEntity : BLEntity_Ext)"/>
+    <LocationEntryPoint
+      signature="BLEntityDetail_Ext(inBLEntity : BLEntity_Ext, inClone : boolean)"/>
+    <LocationEntryPoint
+      signature="BLEntityDetail_Ext(inBLEntity : BLEntity_Ext, inClone : boolean, inEntityType : BLEntityType_Ext)"/>
+    <Variable
+      name="inBLEntity"
+      type="BLEntity_Ext"/>
+    <Variable
+      initialValue="false"
+      name="inClone"
+      type="boolean"/>
+    <Variable
+      initialValue="BLEntityType_Ext.TC_ENTITY"
+      name="inEntityType"
+      type="BLEntityType_Ext"/>
+    <Variable
+      initialValue="new acc.pc.bl.BLEntityDetailPageProcess_Ext(inBLEntity, inClone, inEntityType)"
+      name="pageProcess"
+      type="acc.pc.bl.BLEntityDetailPageProcess_Ext"/>
+    <Screen>
+      <Toolbar>
+        <EditButtons
+          cancelVisible="true"
+          editVisible="true"
+          updateVisible="true"/>
+        <ToolbarButton
+          action="pageProcess.removeBLEntity(pageProcess.BLEntity)"
+          available="pageProcess.BLEntity.protectedEntity == false"
+          id="deleteButton"
+          label="&quot;Remove&quot;"/>
+      </Toolbar>
+      <PanelRow>
+        <PanelColumn>
+          <DetailViewPanel>
+            <InputColumn>
+              <TextInput
+                editable="true"
+                id="BLEntityNameDetail"
+                label="&quot;Name&quot;"
+                required="true"
+                value="pageProcess.BLEntity.EntityName"/>
+              <TypeKeyInput
+                editable="true"
+                id="blEntityTypeDetail"
+                label="&quot;Type&quot;"
+                required="true"
+                value="pageProcess.BLEntity.BLEntityType"
+                valueType="BLEntityType_Ext"></TypeKeyInput>
+            </InputColumn>
+          </DetailViewPanel>
+        </PanelColumn>
+        <PanelColumn>
+          <DetailViewPanel>
+            <InputColumn>
+              <ListViewInput
+                boldLabel="true"
+                def="LocalizedValuesLV(pageProcess.BLEntity, { &quot;EntityName&quot;}, {&quot;EntityName&quot;})"
+                editable="true"
+                id="LocalizedValuesLV"
+                label="DisplayKey.get(&quot;Web.Admin.LocalizedValuesDV.Localization&quot;)"
+                visible="LanguageType.getTypeKeys(false).Count &gt; 1">
+                <Toolbar
+                  visible="false">
+                  <IteratorButtons
+                    iterator="LocalizedValuesLV.LocalizedFields"/>
+                </Toolbar>
+              </ListViewInput>
+            </InputColumn>
+          </DetailViewPanel>
+        </PanelColumn>
+      </PanelRow>
+      <DetailViewPanel>
+        <InputColumn>
+          <TextAreaInput
+            editable="true"
+            id="EntityPathDetail"
+            label="pageProcess.BLEntity.BLEntityType == BLEntityType_Ext.TC_ENTITY ? &quot;Path&quot; : &quot;Command String&quot;"
+            numCols="100"
+            numRows="10"
+            value="pageProcess.BLEntity.EntityPath"></TextAreaInput>
+        </InputColumn>
+      </DetailViewPanel>
+    </Screen>
+  </Page>
+</PCF>

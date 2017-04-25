@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Popup
+    canEdit="true"
+    id="SchemeImportPopup"
+    startInEditMode="true"
+    title="&quot;Scheme Import&quot;">
+    <LocationEntryPoint
+      signature="SchemeImportPopup()"/>
+    <Variable
+      initialValue=" new acc.pc.scheme.pageprocess.SchemeImportPopupProcess( CurrentLocation)"
+      name="pageProcess"
+      type="acc.pc.scheme.pageprocess.SchemeImportPopupProcess"/>
+    <Variable
+      initialValue="pageProcess.importFolder"
+      name="importFolder"
+      recalculateOnRefresh="true"
+      type="String"/>
+    <Screen>
+      <DetailViewPanel>
+        <InputColumn>
+          <TextInput
+            editable="true"
+            id="exportFolderInput"
+            label="&quot;Import Folder&quot;"
+            value="pageProcess.importFolder"/>
+        </InputColumn>
+      </DetailViewPanel>
+      <PanelRef
+        id="panel">
+        <Toolbar
+          id="toolbar">
+          <ToolbarButton
+            action="pageProcess.updateFilesList()"
+            id="openDirectory"
+            label="&quot;List Files&quot;"
+            showConfirmMessage="false"/>
+          <CheckedValuesToolbarButton
+            allCheckedRowsAction="pageProcess.importChecked((CheckedValues))"
+            id="importFiles"
+            iterator="fileToImportIterator"
+            label="&quot;Import&quot;"/>
+        </Toolbar>
+        <ListDetailPanel
+          selectionName="currentFile"
+          selectionType="java.io.File">
+          <ListViewPanel>
+            <RowIterator
+              checkBoxVisible="true"
+              editable="false"
+              elementName="file"
+              hasCheckBoxes="true"
+              id="fileToImportIterator"
+              type="java.io.File"
+              value="pageProcess.filesToImport"
+              valueType="java.io.File[]">
+              <Row>
+                <TextCell
+                  id="filename"
+                  label="&quot;File Name&quot;"
+                  value="file.Name"/>
+                <TextCell
+                  id="empty"/>
+                <TextCell
+                  id="errorCell"
+                  label="&quot;Error Report&quot;"
+                  value="pageProcess.checkIfErrorFileExists(file)? &quot;Errors Found&quot;: &quot;&quot;"/>
+              </Row>
+            </RowIterator>
+          </ListViewPanel>
+          <CardViewPanel
+            hideTabIfSingle="true">
+            <Card
+              id="errorReportCard"
+              title="&quot;Error Report&quot;"
+              visible="currentFile!=null &amp;&amp; pageProcess.checkIfErrorFileExists(currentFile)">
+              <DetailViewPanel>
+                <InputColumn>
+                  <TextAreaInput
+                    id="errorReportTextArea"
+                    label="&quot;Report&quot;"
+                    labelAbove="true"
+                    numCols="250"
+                    numRows="40"
+                    value="pageProcess.getErrorReportString(currentFile)"/>
+                </InputColumn>
+              </DetailViewPanel>
+            </Card>
+          </CardViewPanel>
+        </ListDetailPanel>
+      </PanelRef>
+    </Screen>
+  </Popup>
+</PCF>

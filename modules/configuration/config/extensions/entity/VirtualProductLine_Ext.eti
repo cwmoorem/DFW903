@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<entity
+  xmlns="http://guidewire.com/datamodel"
+  entity="VirtualProductLine_Ext"
+  desc="Line availability for a virtual product"
+  table="virtualproductline_ext"
+  type="retireable">
+  <column
+    desc="Code for the associated Line"
+    name="LineCode"
+    nullok="false"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="60"/>
+  </column>
+  <column
+    desc="Indicator if the line is available for the virtual product"
+    name="LineAvailable"
+    nullok="false"
+    type="bit"/>
+  <foreignkey
+    desc="Virtual Product"
+    fkentity="VirtualProduct_Ext"
+    name="VirtualProduct"
+    nullok="false"/>
+</entity>

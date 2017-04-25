@@ -1,0 +1,26 @@
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="SchedulePremiumDelegate_Ext">
+
+	<column name="PremiumType1" type="shorttext" nullok="true"/>
+	<column name="Premium1" type="money" nullok="true"/>
+	<column name="PremiumType2" type="shorttext" nullok="true"/>
+	<column name="Premium2" type="money" nullok="true"/>
+	<column name="PremiumType3" type="shorttext" nullok="true"/>
+	<column name="Premium3" type="money" nullok="true"/>
+	<column name="PremiumType4" type="shorttext" nullok="true"/>
+	<column name="Premium4" type="money" nullok="true"/>
+	<column name="PremiumType5" type="shorttext" nullok="true"/>
+	<column name="Premium5" type="money" nullok="true"/>
+	<column name="PremiumType6" type="shorttext" nullok="true"/>
+	<column name="Premium6" type="money" nullok="true"/>
+	<column name="PremiumType7" type="shorttext" nullok="true"/>
+	<column name="Premium7" type="money" nullok="true"/>
+	<column name="PremiumType8" type="shorttext" nullok="true"/>
+	<column name="Premium8" type="money" nullok="true"/>
+	<column name="PremiumType9" type="shorttext" nullok="true"/>
+	<column name="Premium9" type="money" nullok="true"/>
+	<column name="PremiumType10" type="shorttext" nullok="true"/>
+	<column name="Premium10" type="money" nullok="true"/>
+
+</delegate>

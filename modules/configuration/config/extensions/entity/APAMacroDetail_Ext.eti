@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<entity
+  desc="Macro steps"
+  xmlns="http://guidewire.com/datamodel"
+  entity="APAMacroDetail_Ext"
+  table="apamacrodetail_ext"
+  type="retireable">
+  <column
+    desc="Order the macro details will be executed"
+    name="DetailOrder"
+    nullok="false"
+    type="integer"/>
+  <typekey
+    desc="The Action Step to perfrom"
+    name="APAActionType"
+    nullok="false"
+    typelist="APAActionType_Ext"/>
+  <foreignkey
+    fkentity="APAMacro_Ext"
+    name="APAMacro"
+    nullok="false"/>
+  <edgeForeignKey
+    edgeTableName="APAIncMac"
+    fkentity="APAMacro_Ext"
+    name="IncludeMacro"
+    nullok="true"/>
+
+</entity>

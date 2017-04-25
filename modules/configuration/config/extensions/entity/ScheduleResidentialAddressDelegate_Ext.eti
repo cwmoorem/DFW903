@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleResidentialAddressDelegate_Ext">
+  <column
+    desc="First line of mailing address."
+    name="ResidentialAddressLine1"
+    nullok="true"
+    type="addressline"/>
+  <column
+    desc="Second line of mailing address."
+    name="ResidentialAddressLine2"
+    nullok="true"
+    type="addressline"/>
+  <column
+    desc="Third line of mailing address."
+    name="ResidentialAddressLine3"
+    nullok="true"
+    type="addressline"/>
+  <column
+    desc="Additional description of mailing address."
+    name="ResidentialDescription"
+    nullok="true"
+    type="shorttext"/>
+  <column
+    name="ResidentialCity"
+    nullok="true"
+    type="varchar">
+    <columnParam
+      name="size"
+      value="60"/>
+  </column>
+  <column
+    name="ResidentialPostalCode"
+    nullok="true"
+    type="postalcode"/>
+  <typekey
+    desc="Country."
+    name="ResidentialCountry"
+    nullok="true"
+    typelist="Country"/>
+</delegate>

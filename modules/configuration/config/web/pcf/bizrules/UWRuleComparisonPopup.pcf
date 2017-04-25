@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <Popup
+    afterReturnFromPopup="if (popupCommitted) CurrentLocation.commit()"
+    canEdit="true"
+    id="UWRuleComparisonPopup"
+    title="DisplayKey.get('Web.BizRules.UWRules.Comparison.Title')">
+    <LocationEntryPoint
+      signature="UWRuleComparisonPopup(version1 : UWRuleVersion, version2 : UWRuleVersion)"/>
+    <LocationEntryPoint
+      signature="UWRuleComparisonPopup(importEntry : RuleImportTaskEntry, importHelper : gw.bizrules.pcf.RuleExportImportPageHelper&lt;UWRuleVersion&gt;)"/>
+    <Variable
+      name="importEntry"
+      type="RuleImportTaskEntry"/>
+    <Variable
+      name="importHelper"
+      type="gw.bizrules.pcf.RuleExportImportPageHelper&lt;UWRuleVersion&gt;"/>
+    <Variable
+      initialValue="importEntry.ExistingVersion as UWRuleVersion"
+      name="version1"
+      type="UWRuleVersion"/>
+    <Variable
+      initialValue="importEntry.ImportedVersion as UWRuleVersion"
+      name="version2"
+      type="UWRuleVersion"/>
+    <Variable
+      initialValue="new gw.web.bizrules.UWRuleVersionComparisonHelper(version1, version2, CurrentLocation)"
+      name="controller"
+      type="gw.web.bizrules.UWRuleVersionComparisonHelper"/>
+    <Variable
+      initialValue="gw.bizrules.UWRulesNavigationSupport.getInstance()"
+      name="navSupport"
+      type="gw.bizrules.pcf.BizRulesPageNavigationSupport"/>
+    <Screen>
+      <Toolbar>
+        <ToolbarButton
+          action="importHelper.resolveConflict(importEntry, TC_EXISTING); CurrentLocation.cancel()"
+          id="ChooseExisting"
+          label="DisplayKey.get(&quot;BizRules.Import.Comparison.KeepExisting&quot;)"
+          visible="importEntry.Status.Conflict"/>
+        <ToolbarButton
+          action="importHelper.resolveConflict(importEntry, TC_IMPORTING); CurrentLocation.cancel()"
+          id="ChooseImporting"
+          label="DisplayKey.get(&quot;BizRules.Import.Comparison.ReplaceWithNew&quot;)"
+          visible="importEntry.Status.Conflict"/>
+        <ToolbarButton
+          available="not importEntry.ExistingVersionDraft"
+          desc="Dropdown menu that goes to an edit popup that creates a new draft rule version based on either the existing or importing version."
+          id="EditNewMerge"
+          label="DisplayKey.get(&quot;BizRules.Import.Comparison.Edit&quot;)"
+          visible="importEntry.Status.Conflict and perm.UWRule.edit">
+          <MenuItem
+            action="UWRuleEditPopup.push(importEntry, importHelper, TC_EXISTING)"
+            desc="Menu item that goes to an edit popup that creates a merge rule version based on the existing version."
+            id="Existing"
+            label="DisplayKey.get(&quot;BizRules.Import.Comparison.Edit.Existing&quot;)"
+            visible="importEntry.Status != TC_EDITEDRESOLVEDCONFLICT"/>
+          <MenuItem
+            action="UWRuleEditPopup.push(importEntry, importHelper, TC_IMPORTING)"
+            desc="Menu item that goes to an edit popup that creates a merge rule version based on the importing version."
+            id="Importing"
+            label="DisplayKey.get(&quot;BizRules.Import.Comparison.Edit.Importing&quot;)"
+            visible="importEntry.Status != TC_EDITEDRESOLVEDCONFLICT"/>
+        </ToolbarButton>
+      </Toolbar>
+      <AlertBar
+        id="ExistingInDraftAlert"
+        label="DisplayKey.get(&quot;BizRules.Import.Comparison.NoEditOfExistingDraftAlert&quot;)"
+        visible="perm.UWRule.edit and importEntry.ExistingVersionDraft"/>
+      <DetailViewPanel>
+        <Layout
+          columns="controller.TotalColumns"
+          equalWidth="false"
+          type="table"/>
+        <InputSetRef
+          def="RuleComparisonColumnHeadingsInputSet(controller, {DisplayKey.get(&quot;BizRules.Import.Comparison.Existing&quot;,navSupport.VersionController.getLabelForExistingVersion(version1,false)), DisplayKey.get(&quot;BizRules.Import.Comparison.Importing&quot;,navSupport.VersionController.getLabelForImportingVersion(version2))})"
+          id="ComparisonHeadings"/>
+        <InputSetRef
+          def="RuleComparisonSectionLabelInputSet(controller, DisplayKey.get(&quot;BizRules.Import.Comparison.RuleDetails&quot;))"
+          id="RuleDetailsSectionLabel"/>
+        <InputSetRef
+          def="RuleComparisonRowStringInputSet(controller.NameRow)"
+          id="NameRow"/>
+        <InputSetRef
+          def="RuleComparisonRowStringInputSet(controller.CodeRow)"
+          id="CodeRow"/>
+        <InputSetRef
+          def="RuleComparisonRowTypeKeyInputSet(controller.CheckingSetRow)"
+          id="CheckingSetRow"/>
+        <InputSetRef
+          def="RuleComparisonRowTypeKeyInputSet(controller.BlockingPointRow)"
+          id="BlockingPointRow"/>
+        <InputSetRef
+          def="RuleComparisonRowTypeKeyInputSet(controller.DefaultDurationRow)"
+          id="DefaultDurationRow"/>
+        <InputSetRef
+          def="RuleComparisonRowTextAreaInputSet(controller.DescriptionRow)"
+          id="DescriptionRow"/>
+        <InputSetRef
+          def="RuleComparisonRowBooleanInputSet(controller.AvailableToRunRow)"
+          id="AvailableToRunRow"/>
+        <InputSetRef
+          def="RuleComparisonRowDateInputSet(controller.StartDateRow)"
+          id="StartDateRow"/>
+        <InputSetRef
+          def="RuleComparisonRowDateInputSet(controller.EndDateRow)"
+          id="EndDateRow"/>
+        <InputSetRef
+          def="RuleComparisonSectionLabelInputSet(controller, DisplayKey.get('Web.BizRules.UWRulePanelSet.RuleContextTitle'))"
+          id="ContextSectionLabel"/>
+        <InputSetRef
+          def="RuleComparisonRowTypeKeyInputSet(controller.ContextRow)"
+          id="ContextRow"/>
+        <InputSetRef
+          def="RuleComparisonSectionLabelInputSet(controller, DisplayKey.get('Web.BizRules.UWRules.Comparison.ApplicabilityCriteria'))"
+          id="ApplicabilityCriteriaSectionLabel"/>
+        <InputSetRef
+          def="RuleComparisonRowListInputSet(controller.PolicyLineRow)"
+          id="PolicyLineRowRow"/>
+        <InputSetRef
+          def="RuleComparisonRowListInputSet(controller.JurisdictionRow)"
+          id="StateRow"/>
+        <InputSetRef
+          def="RuleComparisonRowListInputSet(controller.PolicyTransactionRow)"
+          id="PolicyTransactionRow"/>
+        <InputSetRef
+          def="RuleComparisonConditionInputSet(controller)"
+          id="RuleCondition"/>
+        <InputSetRef
+          def="RuleComparisonActionsInputSet(controller)"
+          id="RuleActions"/>
+        <InputSetRef
+          def="RuleComparisonSectionLabelInputSet(controller, DisplayKey.get(&quot;Web.BizRules.UWRulePanelSet.AdvancedInfoTitle&quot;))"
+          id="AdvancedSectionLabel"/>
+        <InputSetRef
+          def="RuleComparisonRowBooleanInputSet(controller.AutoApprovableRow)"
+          id="AutoApprovableRow"/>
+        <InputSetRef
+          def="RuleComparisonRowBooleanInputSet(controller.DefaultEditBeforeBindRow)"
+          id="DefaultEditBeforeBindRow"/>
+        <InputSetRef
+          def="RuleComparisonRowTypeKeyInputSet(controller.DefaultApprovalBlockingPointRow)"
+          id="DefaultApprovalBlockingPointRow"/>
+        <InputSetRef
+          def="RuleComparisonRowTypeKeyInputSet(controller.ComparatorRow)"
+          id="ComparatorRow"/>
+        <InputSetRef
+          def="RuleComparisonRowTypeKeyInputSet(controller.ValueFormatterTypeRow)"
+          id="ValueFormatterTypeRow"/>
+        <InputSetRef
+          def="RuleComparisonRowTypeKeyInputSet(controller.DefaultValueAssignmentTypeRow)"
+          id="DefaultValueAssignmentTypeRow"/>
+        <InputSetRef
+          def="RuleComparisonRowStringInputSet(controller.DefaultValueOffsetAmountRow)"
+          id="DefaultValueOffsetAmountRow"/>
+        <InputSetRef
+          def="RuleComparisonRowTypeKeyInputSet(controller.DefaultValueOffsetCurrencyRow)"
+          id="DefaultValueOffsetCurrencyRow"/>
+      </DetailViewPanel>
+    </Screen>
+  </Popup>
+</PCF>

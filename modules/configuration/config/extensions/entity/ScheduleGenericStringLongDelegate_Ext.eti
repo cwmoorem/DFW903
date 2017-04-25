@@ -1,0 +1,15 @@
+<delegate
+  xmlns="http://guidewire.com/datamodel"
+  name="ScheduleGenericStringLongDelegate_Ext">
+
+	<column name="LongStringValue1" type="longtext" nullok="true"/>
+	<column name="LongStringValue2" type="longtext" nullok="true"/>
+	<column name="LongStringValue3" type="longtext" nullok="true"/>
+	<column name="LongStringValue4" type="longtext" nullok="true"/>
+	<column name="LongStringValue5" type="longtext" nullok="true"/>
+	<column name="LongStringValue6" type="longtext" nullok="true"/>
+	<column name="LongStringValue7" type="longtext" nullok="true"/>
+	<column name="LongStringValue8" type="longtext" nullok="true"/>
+	<column name="LongStringValue9" type="longtext" nullok="true"/>
+	<column name="LongStringValue10" type="longtext" nullok="true"/>
+</delegate>
